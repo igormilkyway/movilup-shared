@@ -2,16 +2,17 @@
 
 import struct Foundation.Date
 
-public struct SignUpRequest: ServerRequest {
+public struct SignUpRequest: ServerRequest {  
   public typealias Response = SignUpResponse
   public static let url = "signup"
+
   public let eventDate: Date
 
-  let email: String
-  let password: String
-  let firstName: String
-  let lastName: String
-  let phoneNumber: String
+  public let email: String
+  public let password: String
+  public let firstName: String
+  public let lastName: String
+  public let phoneNumber: String
 
   public init(email: String,
               password: String,
@@ -26,8 +27,4 @@ public struct SignUpRequest: ServerRequest {
     self.lastName = lastName
     self.phoneNumber = phoneNumber
   }
-}
-
-public struct SignUpResponse: ServerResponse {
-  public let token: String
 }
