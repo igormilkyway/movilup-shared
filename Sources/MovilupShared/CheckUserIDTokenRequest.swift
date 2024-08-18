@@ -2,10 +2,10 @@
 
 import struct Foundation.Date
 
-struct CheckUserIDTokenRequest: ServerRequest {
-  typealias Response = CheckUserIDTokenResponse
-  static let url = "check-userid-token"
-  let eventDate: Date
+public struct CheckUserIDTokenRequest: ServerRequest {
+  public typealias Response = CheckUserIDTokenResponse
+  public static let url = "check-userid-token"
+  public let eventDate: Date
   
   let userIDToken: String
 
@@ -15,6 +15,6 @@ struct CheckUserIDTokenRequest: ServerRequest {
   }
 }
 
-struct CheckUserIDTokenResponse: ServerResponse {
+public struct CheckUserIDTokenResponse: ServerResponse {
   let isOk: Bool
 }

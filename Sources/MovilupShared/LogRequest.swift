@@ -2,10 +2,10 @@
 
 import struct Foundation.Date
 
-struct LogRequest: ServerRequest {
-  typealias Response = LogResponse
-  static let url = "log"
-  let eventDate: Date
+public struct LogRequest: ServerRequest {
+  public typealias Response = LogResponse
+  public static let url = "log"
+  public let eventDate: Date
   
   let message: String
 
@@ -15,6 +15,6 @@ struct LogRequest: ServerRequest {
   }
 }
 
-struct LogResponse: ServerResponse {
+public struct LogResponse: ServerResponse {
 
 }

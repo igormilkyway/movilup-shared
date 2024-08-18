@@ -2,12 +2,12 @@
 
 import struct Foundation.Date
 
-protocol ServerRequest: Codable {
+public protocol ServerRequest: Codable {
   associatedtype Response: ServerResponse
   static var url: String { get }
   var eventDate: Date { get }
 }
 
-protocol ServerResponse: Codable {
+public protocol ServerResponse: Codable {
 
 }

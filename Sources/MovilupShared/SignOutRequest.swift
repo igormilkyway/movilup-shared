@@ -2,10 +2,10 @@
 
 import struct Foundation.Date
 
-struct SignOutRequest: ServerRequest {
-  typealias Response = SignOutResponse
-  static let url = "sign-out"
-  let eventDate: Date
+public struct SignOutRequest: ServerRequest {
+  public typealias Response = SignOutResponse
+  public static let url = "sign-out"
+  public let eventDate: Date
   
   let userIDToken: String
 
@@ -15,5 +15,5 @@ struct SignOutRequest: ServerRequest {
   }
 }
 
-struct SignOutResponse: ServerResponse {
+public struct SignOutResponse: ServerResponse {
 }

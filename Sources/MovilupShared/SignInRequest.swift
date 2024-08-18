@@ -2,10 +2,10 @@
 
 import struct Foundation.Date
 
-struct SignInRequest: ServerRequest {
-  typealias Response = SignInResponse
-  static let url = "sign-in"
-  let eventDate: Date
+public struct SignInRequest: ServerRequest {
+  public typealias Response = SignInResponse
+  public static let url = "sign-in"
+  public let eventDate: Date
 
   let userName: String
   let password: String
@@ -17,6 +17,6 @@ struct SignInRequest: ServerRequest {
   }
 }
 
-struct SignInResponse: ServerResponse {
+public struct SignInResponse: ServerResponse {
   let token: String
 }
