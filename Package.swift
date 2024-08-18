@@ -4,20 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "movilup-shared",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "movilup-shared",
-            targets: ["movilup-shared"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "movilup-shared"),
-        .testTarget(
-            name: "movilup-sharedTests",
-            dependencies: ["movilup-shared"]),
-    ]
+  name: "movilup-shared",
+  products: [
+    // Products define the executables and libraries a package produces, making them visible to other packages.
+    .library(
+      name: "MovilupShared",
+      targets: ["MovilupShared"]),
+  ],
+  targets: [
+    // Targets are the basic building blocks of a package, defining a module or a test suite.
+    // Targets can depend on other targets in this package and products from dependencies.
+    .target(
+      name: "MovilupShared"),
+    .testTarget(
+      name: "MovilupSharedTests",
+      dependencies: ["MovilupShared"]),
+  ]
 )
