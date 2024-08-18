@@ -4,19 +4,19 @@ import struct Foundation.Date
 
 public struct SignInRequest: ServerRequest {
   public typealias Response = SignInResponse
-  public static let url = "sign-in"
+  public static let url = "signin"
   public let eventDate: Date
 
-  let userName: String
+  let email: String
   let password: String
 
-  init(userName: String, password: String) {
+  public init(email: String, password: String) {
     self.eventDate = .now
-    self.userName = userName
+    self.email = email
     self.password = password
   }
 }
 
 public struct SignInResponse: ServerResponse {
-  let token: String
+  public let token: String
 }

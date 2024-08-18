@@ -9,7 +9,7 @@ public struct SignOutRequest: ServerRequest {
   
   let userIDToken: String
 
-  init(userIDToken: String) {
+  public init(userIDToken: String) {
     self.eventDate = .now
     self.userIDToken = userIDToken
   }

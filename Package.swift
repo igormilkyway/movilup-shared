@@ -6,6 +6,7 @@ import PackageDescription
 let package = Package(
   name: "movilup-shared",
   platforms: [
+    .macOS(.v13),
     .iOS(.v15),
   ],
   products: [

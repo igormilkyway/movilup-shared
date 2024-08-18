@@ -9,7 +9,7 @@ public struct LogRequest: ServerRequest {
   
   let message: String
 
-  init(message: String) {
+  public init(message: String) {
     self.eventDate = .now
     self.message = message
   }
