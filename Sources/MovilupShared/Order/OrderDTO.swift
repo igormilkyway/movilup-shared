@@ -3,17 +3,21 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
+extension OrderDTO: ServerRequest {}
 extension OrderDTO: ServerResponse {}
 
 public struct OrderDTO: Codable {
-  public let id: UUID
+  public typealias Response = CreateOrderResponse
+  public static let url = "create_order"
 
-  public let customer: UserDTO
+  public let id: UUID?
+
+  public let customer: UserDTO?
   public let estimator: UserDTO?
   public let driver: UserDTO?
 
   public let arrivedAtDeparturePlannedDate: Date
-  public let createdDate: Date
+  public let createdDate: Date?
   public let estimatedDate: Date?
   public var approvedDate: Date?
   public let driverTakenDate: Date?
@@ -22,12 +26,12 @@ public struct OrderDTO: Codable {
   public let arrivedAtDestinationDate: Date?
   public let closedDate: Date?
 
-  public let state: OrderState
+  public let state: OrderState?
 
-  public init(id: UUID,
+  public init(id: UUID?,
 
               arrivedAtDeparturePlannedDate: Date,
-              createdDate: Date, 
+              createdDate: Date?,
               estimatedDate: Date?,
               approvedDate: Date?,
               driverTakenDate: Date?,
@@ -36,11 +40,11 @@ public struct OrderDTO: Codable {
               arrivedAtDestinationDate: Date?,
               closedDate: Date?,
 
-              customer: UserDTO,
+              customer: UserDTO?,
               estimator: UserDTO?,
               driver: UserDTO?,
 
-              state: OrderState) {
+              state: OrderState?) {
     self.id = id
     self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
     self.createdDate = createdDate

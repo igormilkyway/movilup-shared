@@ -1,10 +1,14 @@
 //
 
-import struct Foundation.Date
+public typealias OrdersResponse = [OrderDTO]
 
 public struct OrdersRequest: ServerRequest {
   public typealias Response = OrdersResponse
   public static let url = "orders"
 
-  public init() {}
+  public let state: OrderState?
+
+  public init(_ state: OrderState?) {
+    self.state = state
+  }
 }

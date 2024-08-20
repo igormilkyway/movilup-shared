@@ -1,16 +1,13 @@
 //
 
-import struct Foundation.Date
+public typealias CreateOrderRequest = OrderDTO
+public typealias CreateOrderResponse = OrderDTO
 
-public struct CreateOrderRequest: ServerRequest {
-  public typealias Response = CreateOrderResponse
-  public static let url = "create_order"
+public struct ApproveOrderRequest: ServerRequest {
+  public typealias Response = ApproveOrderResponse
+  public static let url = "approve_order"
 
-  public let order: OrderDTO
-
-  public init(order: OrderDTO) {
-    self.order = order
-  }
+  public init() {}
 }
 
-public typealias CreateOrderResponse = OrderDTO
+public typealias ApproveOrderResponse = OrderDTO

@@ -1,3 +1,0 @@
-//
-
-public typealias OrdersResponse = [OrderDTO]
