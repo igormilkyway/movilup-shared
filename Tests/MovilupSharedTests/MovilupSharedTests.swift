@@ -1,7 +1,7 @@
 import XCTest
-@testable import movilup_shared
+@testable import movilup-shared
 
-final class movilup_sharedTests: XCTestCase {
+final class MovilupSharedTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

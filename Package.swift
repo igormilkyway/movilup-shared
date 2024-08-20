@@ -22,6 +22,8 @@ let package = Package(
       name: "MovilupShared"),
     .testTarget(
       name: "MovilupSharedTests",
-      dependencies: ["MovilupShared"]),
+      dependencies: [
+        .target(name: "MovilupShared"),
+      ]),
   ]
 )
