@@ -1,13 +1,20 @@
 //
 
+import struct Foundation.UUID
+
 public typealias CreateOrderRequest = OrderDTO
 public typealias CreateOrderResponse = OrderDTO
 
-public struct ApproveOrderRequest: ServerRequest {
-  public typealias Response = ApproveOrderResponse
-  public static let url = "approve_order"
+public struct UpdateOrderRequest: ServerRequest {
+  public typealias Response = UpdateOrderResponse
+  public static let url = "update_order"
 
-  public init() {}
-}
+  public let state: OrderState
+  public let orderID: UUID?
 
-public typealias ApproveOrderResponse = OrderDTO
+  public init(to state: OrderState, orderID: UUID?) {
+    self.state = state
+    self.orderID = orderID
+  }}
+
+public typealias UpdateOrderResponse = OrderDTO

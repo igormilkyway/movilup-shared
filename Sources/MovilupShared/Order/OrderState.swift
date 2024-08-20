@@ -30,6 +30,29 @@ public enum OrderState: String, Codable, Sendable {
   case loaded
   case arrivedAtDestination
   case closed
+
+  public init?(intValue: Int) {
+    switch intValue {
+      case 0:
+        self = .created
+      case 1:
+        self = .estimated
+      case 2:
+        self = .approved
+      case 3:
+        self = .driverTaken
+      case 4:
+        self = .arrivedAtDeparture
+      case 5:
+        self = .loaded
+      case 6:
+        self = .arrivedAtDestination
+      case 7:
+        self = .closed
+      default:
+        return nil
+    }
+  }
 }
 
 extension OrderState: Comparable {
