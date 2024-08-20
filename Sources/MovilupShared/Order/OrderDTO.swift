@@ -3,22 +3,26 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
+extension OrderDTO: ServerResponse {}
+
 public struct OrderDTO: Codable {
   public let id: UUID
+
+  public let customer: UserDTO
+  public let estimator: UserDTO?
+  public let driver: UserDTO?
 
   public let arrivedAtDeparturePlannedDate: Date
   public let createdDate: Date
   public let estimatedDate: Date?
-  public let approvedDate: Date?
+  public var approvedDate: Date?
   public let driverTakenDate: Date?
   public let arrivedAtDepartureDate: Date?
   public let loadedDate: Date?
   public let arrivedAtDestinationDate: Date?
   public let closedDate: Date?
 
-  public let customer: UserDTO
-  public let estimator: UserDTO?
-  public let driver: UserDTO?
+  public let state: OrderState
 
   public init(id: UUID,
 
@@ -34,7 +38,9 @@ public struct OrderDTO: Codable {
 
               customer: UserDTO,
               estimator: UserDTO?,
-              driver: UserDTO?) {
+              driver: UserDTO?,
+
+              state: OrderState) {
     self.id = id
     self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
     self.createdDate = createdDate
@@ -49,5 +55,7 @@ public struct OrderDTO: Codable {
     self.customer = customer
     self.estimator = estimator
     self.driver = driver
+
+    self.state = state
   }
 }

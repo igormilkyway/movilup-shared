@@ -7,8 +7,6 @@ public struct SignUpRequest: ServerRequest {
   public typealias Response = SignUpResponse
   public static let url = "signup"
 
-  public let eventDate: Date
-
   public let email: String
   public let password: String
   public let firstName: String
@@ -22,8 +20,6 @@ public struct SignUpRequest: ServerRequest {
               lastName: String?,
               phoneNumber: String?,
               imageURL: URL?) {
-    self.eventDate = .now
-
     self.email = email
     self.password = password
     self.firstName = firstName
