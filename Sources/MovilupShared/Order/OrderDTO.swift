@@ -28,9 +28,14 @@ public struct OrderDTO: Codable {
 
   public let state: OrderState?
 
+  public let route: OrderRouteDTO
+  //  @Published var cargo: Cargo
+
   public init(id: UUID?,
 
+              route: OrderRouteDTO,
               arrivedAtDeparturePlannedDate: Date,
+
               createdDate: Date?,
               estimatedDate: Date?,
               approvedDate: Date?,
@@ -46,7 +51,10 @@ public struct OrderDTO: Codable {
 
               state: OrderState?) {
     self.id = id
+
+    self.route = route
     self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
+    
     self.createdDate = createdDate
     self.estimatedDate = estimatedDate
     self.approvedDate = approvedDate

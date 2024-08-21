@@ -12,7 +12,7 @@ public struct UpdateOrderRequest: ServerRequest {
   public let state: OrderState
   public let orderID: UUID?
 
-  public init(to state: OrderState, orderID: UUID?) {
+  public init(to state: OrderState, orderID: UUID? = nil) {
     self.state = state
     self.orderID = orderID
   }}
