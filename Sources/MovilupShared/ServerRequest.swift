@@ -10,3 +10,7 @@ public protocol ServerRequest: Codable {
 public protocol ServerResponse: Codable {}
 
 extension Array: ServerResponse where Element: Codable {}
+
+public struct EmptyServerResponse: ServerResponse {
+  public init() {}
+}
