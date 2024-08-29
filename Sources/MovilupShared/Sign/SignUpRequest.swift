@@ -12,19 +12,16 @@ public struct SignUpRequest: ServerRequest {
   public let firstName: String
   public let lastName: String?
   public let phoneNumber: String?
-  public let imageURL: URL?
 
   public init(email: String,
               password: String,
               firstName: String,
               lastName: String?,
-              phoneNumber: String?,
-              imageURL: URL?) {
+              phoneNumber: String?) {
     self.email = email
     self.password = password
     self.firstName = firstName
     self.lastName = lastName
     self.phoneNumber = phoneNumber
-    self.imageURL = imageURL
   }
 }
