@@ -1,6 +1,6 @@
 //
 
-public struct OrderRouteDTO: Codable {
+public struct OrderRouteDTO: Codable, Sendable {
   public var from: LocationDTO
   public var to: LocationDTO
 
@@ -10,7 +10,7 @@ public struct OrderRouteDTO: Codable {
   }
 }
 
-public struct LocationDTO: Codable {
+public struct LocationDTO: Codable, Sendable {
   public var address: String
   public var latitude: Double
   public var longitude: Double

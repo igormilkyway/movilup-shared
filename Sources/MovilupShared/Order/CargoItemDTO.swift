@@ -1,6 +1,6 @@
 //
 
-public struct CargoListItemDTO: Codable {
+public struct CargoItemDTO: Codable, Sendable {
   public var name: String
   public var price: Int
   public var quantity: Int

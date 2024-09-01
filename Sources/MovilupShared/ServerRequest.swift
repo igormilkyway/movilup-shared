@@ -2,7 +2,7 @@
 
 import struct Foundation.Date
 
-public protocol ServerRequest: Codable {
+public protocol ServerRequest: Codable, Sendable {
   associatedtype Response: ServerResponse
   static var url: String { get }
 }
