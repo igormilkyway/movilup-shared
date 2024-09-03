@@ -1,12 +1,16 @@
 //
 
-public struct OrderRouteDTO: Codable, Sendable {
+public struct RouteDTO: Codable, Sendable {
   public var from: LocationDTO
   public var to: LocationDTO
 
   public init(from: LocationDTO, to: LocationDTO) {
     self.from = from
     self.to = to
+  }
+
+  public var isValid: Bool {
+    from.isValid && to.isValid
   }
 }
 
@@ -19,5 +23,9 @@ public struct LocationDTO: Codable, Sendable {
     self.address = address
     self.latitude = latitude
     self.longitude = longitude
+  }
+
+  public var isValid: Bool {
+    !address.isEmpty
   }
 }

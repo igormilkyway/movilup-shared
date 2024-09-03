@@ -8,4 +8,8 @@ public struct CargoDTO: Codable, Sendable {
     self.photos = photos
     self.items = items
   }
+
+  public var isValid: Bool {
+    !photos.isEmpty
+  }
 }
