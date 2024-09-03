@@ -27,8 +27,8 @@ public struct OrdersResponseElement: ServerResponse {
   public let arrivedAtDestinationDate: Date?
   public let closedDate: Date?
   public let state: OrderState
-//  public let route: OrderRouteDTO
-//  public var cargo: CargoDTO
+  public let route: RouteDTO
+  public var cargo: CargoDTO
 
   public init(id: UUID, 
               arrivedAtDeparturePlannedDate: Date,
@@ -40,10 +40,9 @@ public struct OrdersResponseElement: ServerResponse {
               loadedDate: Date?,
               arrivedAtDestinationDate: Date?,
               closedDate: Date?,
-              state: OrderState
-//              route: OrderRouteDTO,
-//              cargo: CargoDTO
-  ) {
+              state: OrderState,
+              route: RouteDTO,
+              cargo: CargoDTO) {
     self.id = id
     self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
     self.createdDate = createdDate
@@ -55,7 +54,7 @@ public struct OrdersResponseElement: ServerResponse {
     self.arrivedAtDestinationDate = arrivedAtDestinationDate
     self.closedDate = closedDate
     self.state = state
-//    self.route = route
-//    self.cargo = cargo
+    self.route = route
+    self.cargo = cargo
   }
 }
