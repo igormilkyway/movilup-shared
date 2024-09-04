@@ -1,6 +1,6 @@
 //
 
-public enum OrderState: String, Codable {
+public enum OrderState: String, Codable, Sendable {
   case created
   case takenByEstimator
   case estimated
