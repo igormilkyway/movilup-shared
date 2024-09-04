@@ -10,7 +10,7 @@ public struct UsersRequest: ServerRequest {
 
   public let role: UserRole?
 
-  public init(_ role: UserRole?) {
+  public init(role: UserRole?) {
     self.role = role
   }
 }

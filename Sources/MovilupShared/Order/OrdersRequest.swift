@@ -10,7 +10,7 @@ public struct OrdersRequest: ServerRequest {
 
   public let state: OrderState?
 
-  public init(_ state: OrderState?) {
+  public init(state: OrderState?) {
     self.state = state
   }
 }
