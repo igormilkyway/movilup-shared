@@ -3,7 +3,7 @@
 import struct Foundation.UUID
 
 public struct UpdateOrderRequest: ServerRequest {
-  public typealias Response = EmptyServerResponse
+  public typealias Response = OrdersResponseElement
   public static let url = "update_order"
 
   public let state: OrderState
