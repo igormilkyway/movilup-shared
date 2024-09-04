@@ -5,27 +5,30 @@ public enum OrderState: String, Codable, Sendable {
     switch self {
       case .created:
         0
-      case .estimated:
+      case .takenByEstimator:
         1
-      case .approved:
+      case .estimated:
         2
-      case .driverTaken:
+      case .approved:
         3
-      case .arrivedAtDeparture:
+      case .takenByDriver:
         4
-      case .loaded:
+      case .arrivedAtDeparture:
         5
-      case .arrivedAtDestination:
+      case .loaded:
         6
-      case .closed:
+      case .arrivedAtDestination:
         7
+      case .closed:
+        8
     }
   }
 
   case created
+  case takenByEstimator
   case estimated
   case approved
-  case driverTaken
+  case takenByDriver
   case arrivedAtDeparture
   case loaded
   case arrivedAtDestination
@@ -40,7 +43,7 @@ public enum OrderState: String, Codable, Sendable {
       case 2:
         self = .approved
       case 3:
-        self = .driverTaken
+        self = .takenByDriver
       case 4:
         self = .arrivedAtDeparture
       case 5:
