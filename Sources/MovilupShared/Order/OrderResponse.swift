@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct OrdersResponseElement: ServerResponse {
+public struct OrderResponse: ServerResponse {
   public let id: UUID
   public let arrivedAtDeparturePlannedDate: Date
   public let createdDate: Date

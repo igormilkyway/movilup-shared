@@ -3,7 +3,7 @@
 import Foundation
 
 public struct UpdatedOrderPushPayload: Codable, Sendable {
-  public enum UpdateType: Codable, Sendable{
+  public enum UpdateType: String, Codable, Sendable{
     case created
     case updated
     case deleted

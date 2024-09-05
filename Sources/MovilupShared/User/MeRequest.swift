@@ -9,9 +9,9 @@ public struct MeRequest: ServerRequest {
 
 public struct MeResponse: ServerResponse {
   public let token: String
-  public let usersResponseElement: UsersResponseElement
+  public let usersResponseElement: UserResponse
 
-  public init(token: String, usersResponseElement: UsersResponseElement) {
+  public init(token: String, usersResponseElement: UserResponse) {
     self.token = token
     self.usersResponseElement = usersResponseElement
   }

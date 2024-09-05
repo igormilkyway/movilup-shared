@@ -2,7 +2,7 @@
 
 import Foundation
 
-public typealias OrdersResponse = [OrdersResponseElement]
+public typealias OrdersResponse = [OrderResponse]
 
 public struct OrdersRequest: ServerRequest {
   public typealias Response = OrdersResponse

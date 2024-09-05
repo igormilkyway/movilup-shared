@@ -3,7 +3,7 @@
 import Foundation
 
 public struct CreateOrderRequest: ServerRequest {
-  public typealias Response = OrdersResponseElement
+  public typealias Response = OrderResponse
   public static let url = "create_order"
 
   public let arrivedAtDeparturePlannedDate: Date
