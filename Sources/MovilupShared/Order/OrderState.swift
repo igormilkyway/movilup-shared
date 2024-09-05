@@ -59,3 +59,9 @@ extension OrderState {
     }
   }
 }
+
+extension OrderState: Comparable {
+  public static func < (lhs: OrderState, rhs: OrderState) -> Bool {
+    lhs.intValue < rhs.intValue
+  }
+}
