@@ -7,6 +7,10 @@ public struct ImageRequest: ServerRequest {
   public static let url = "image"
 
   public let imageUUID: UUID
+
+  public init(imageUUID: UUID) {
+    self.imageUUID = imageUUID
+  }
 }
 
 public struct ImageResponse: ServerResponse {

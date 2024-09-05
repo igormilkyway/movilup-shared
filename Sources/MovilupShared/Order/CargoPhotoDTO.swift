@@ -4,7 +4,7 @@ import Foundation
 
 public struct CargoPhotoDTO: Codable, Sendable {
   public let itemIdentifier: String
-  public let imageData: Data?
+  public var imageData: Data?
   public let imageUUID: UUID?
 
   public init(itemIdentifier: String, imageData: Data?, imageUUID: UUID?) {
