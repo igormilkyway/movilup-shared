@@ -14,6 +14,10 @@ public struct ImageRequest: ServerRequest {
 }
 
 public struct ImageResponse: ServerResponse {
-  public let imageData: Data?
+  public let imageData: Data
+
+  public init(imageData: Data) {
+    self.imageData = imageData
+  }
 }
 
