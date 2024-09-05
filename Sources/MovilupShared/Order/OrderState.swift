@@ -41,18 +41,20 @@ extension OrderState {
       case 0:
         self = .created
       case 1:
-        self = .estimated
+        self = .takenByEstimator
       case 2:
-        self = .approved
+        self = .estimated
       case 3:
-        self = .takenByDriver
+        self = .approved
       case 4:
-        self = .arrivedAtDeparture
+        self = .takenByDriver
       case 5:
-        self = .loaded
+        self = .arrivedAtDeparture
       case 6:
-        self = .arrivedAtDestination
+        self = .loaded
       case 7:
+        self = .arrivedAtDestination
+      case 8:
         self = .closed
       default:
         return nil
