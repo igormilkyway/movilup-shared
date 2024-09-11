@@ -7,7 +7,7 @@ public protocol ServerRequest: Codable, Sendable {
   static var url: String { get }
 }
 
-public protocol ServerResponse: Codable {}
+public protocol ServerResponse: Codable, Sendable {}
 
 extension Array: ServerResponse where Element: Codable {}
 
