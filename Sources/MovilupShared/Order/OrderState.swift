@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public enum OrderState: String, Codable, Sendable {
   case created

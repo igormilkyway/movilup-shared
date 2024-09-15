@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 import Foundation
 

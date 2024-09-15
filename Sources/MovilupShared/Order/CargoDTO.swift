@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public struct CargoDTO: Codable, Sendable {
   public var photos: [CargoPhotoDTO]

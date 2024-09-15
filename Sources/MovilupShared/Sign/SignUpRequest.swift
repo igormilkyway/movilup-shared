@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 import struct Foundation.Date
 import struct Foundation.URL

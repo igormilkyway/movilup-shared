@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public enum UserRole: String, Codable, Sendable {
   case owner

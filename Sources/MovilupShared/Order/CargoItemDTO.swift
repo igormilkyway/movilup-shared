@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public struct CargoItemDTO: Codable, Sendable {
   public var name: String

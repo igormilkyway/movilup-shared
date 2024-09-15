@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public struct UpdateIsOnLineRequest: ServerRequest {
   public typealias Response = EmptyServerResponse

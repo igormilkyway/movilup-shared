@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public struct MeRequest: ServerRequest {
   public typealias Response = MeResponse

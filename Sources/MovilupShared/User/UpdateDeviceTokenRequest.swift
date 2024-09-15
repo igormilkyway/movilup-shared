@@ -1,4 +1,4 @@
-//
+//  Created by Igor Sorokin
 
 public struct UpdateDeviceTokenRequest: ServerRequest {
   public typealias Response = EmptyServerResponse
