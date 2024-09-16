@@ -5,9 +5,11 @@ import Foundation
 public struct GetDriverLocationRequest: ServerRequest {
   public typealias Response = [GetDriverLocationResponse]
   public static let url = "get-driver-location"
+
+  public init() {}
 }
 
-public struct GetDriverLocationResponse: Codable {
+public struct GetDriverLocationResponse: Codable, Sendable {
   public let driverID: UUID
   public let latitude: Double
   public let longitude: Double
