@@ -2,9 +2,10 @@
 
 import Foundation
 
-public struct GetDriverLocationRequest: ServerRequest {
+public struct GetDriverLocationRequest: AuthenticatingServerRequest {
   public typealias Response = [GetDriverLocationResponse]
   public static let url = "get-driver-location"
+  public static let authentication: ServerRequestAuthentication = .muToken
 
   public init() {}
 }

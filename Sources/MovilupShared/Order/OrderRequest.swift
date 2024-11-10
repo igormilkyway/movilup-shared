@@ -2,9 +2,10 @@
 
 import Foundation
 
-public struct OrderRequest: ServerRequest {
+public struct OrderRequest: AuthenticatingServerRequest {
   public typealias Response = OrderResponse
   public static let url = "order"
+  public static let authentication: ServerRequestAuthentication = .muToken
 
   public let id: UUID
 

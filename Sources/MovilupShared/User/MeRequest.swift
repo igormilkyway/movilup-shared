@@ -1,13 +1,14 @@
 //  Created by Igor Sorokin
 
-public struct MeRequest: ServerRequest {
+public struct MeRequest: AuthenticatingServerRequest {
   public typealias Response = MeResponse
   public static let url = "me"
+  public static let authentication: ServerRequestAuthentication = .muToken
 
   public init() {}
 }
 
-public struct MeResponse: ServerResponse {
+public struct MeResponse: Codable, Sendable {
   public let token: String
   public let usersResponseElement: UserResponse
 

@@ -2,9 +2,10 @@
 
 import Foundation
 
-public struct ImageRequest: ServerRequest {
+public struct ImageRequest: AuthenticatingServerRequest {
   public typealias Response = ImageResponse
   public static let url = "image"
+  public static let authentication: ServerRequestAuthentication = .muToken
 
   public let imageUUID: UUID
 

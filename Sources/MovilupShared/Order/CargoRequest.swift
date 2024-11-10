@@ -4,6 +4,7 @@ import Foundation
 
 public struct CargoRequest: ServerRequest {
   public typealias Response = CargoResponse
+  
   public static let url = "cargo"
 
   public let orderID: UUID

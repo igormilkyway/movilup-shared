@@ -4,9 +4,10 @@ import Foundation
 
 public typealias UsersResponse = [UserResponse]
 
-public struct UsersRequest: ServerRequest {
+public struct UsersRequest: AuthenticatingServerRequest {
   public typealias Response = UsersResponse
   public static let url = "users"
+  public static let authentication: ServerRequestAuthentication = .muToken
 
   public let role: UserRole?
 

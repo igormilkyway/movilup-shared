@@ -1,8 +1,9 @@
 //  Created by Igor Sorokin
 
-public struct UpdateDriverLocationRequest: ServerRequest {
+public struct UpdateDriverLocationRequest: AuthenticatingServerRequest {
   public typealias Response = EmptyServerResponse
   public static let url = "update-driver-location"
+  public static let authentication: ServerRequestAuthentication = .muToken
 
   public let latitude: Double
   public let longitude: Double
