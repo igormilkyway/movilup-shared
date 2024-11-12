@@ -7,7 +7,7 @@ public typealias UsersResponse = [UserResponse]
 public struct UsersRequest: AuthenticatingServerRequest {
   public typealias Response = UsersResponse
   public static let url = "users"
-  public static let authentication: ServerRequestAuthentication = .muToken
+  public static let authentication: ServerRequestAuthentication = .token
 
   public let role: UserRole?
 

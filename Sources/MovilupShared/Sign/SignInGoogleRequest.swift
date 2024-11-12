@@ -2,10 +2,13 @@
 
 import struct Foundation.Date
 
-public struct SignInGoogleRequest: AuthenticatingServerRequest {
+public struct SignInGoogleRequest: GoogleAuthenticatingServerRequest {
   public typealias Response = MeResponse
   public static let url = "signin-google"
-  public static let authentication: ServerRequestAuthentication = .token
 
-  public init() {}
+  public let token: String
+
+  public init(token: String) {
+    self.token = token
+  }
 }

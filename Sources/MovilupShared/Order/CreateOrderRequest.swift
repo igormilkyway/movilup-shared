@@ -6,7 +6,7 @@ public struct CreateOrderRequest: AuthenticatingServerRequest {
   public typealias Response = OrderResponse
   
   public static let url = "create_order"
-  public static let authentication: ServerRequestAuthentication = .muToken
+  public static let authentication: ServerRequestAuthentication = .token
 
   public let arrivedAtDeparturePlannedDate: Date
   public let route: RouteDTO

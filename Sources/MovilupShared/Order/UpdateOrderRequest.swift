@@ -5,7 +5,7 @@ import struct Foundation.UUID
 public struct UpdateOrderRequest: AuthenticatingServerRequest {
   public typealias Response = OrderResponse
   public static let url = "update_order"
-  public static let authentication: ServerRequestAuthentication = .muToken
+  public static let authentication: ServerRequestAuthentication = .token
 
   public let state: OrderState
   public let orderID: UUID?

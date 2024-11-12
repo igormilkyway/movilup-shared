@@ -3,7 +3,7 @@
 public struct UpdateDriverLocationRequest: AuthenticatingServerRequest {
   public typealias Response = EmptyServerResponse
   public static let url = "update-driver-location"
-  public static let authentication: ServerRequestAuthentication = .muToken
+  public static let authentication: ServerRequestAuthentication = .token
 
   public let latitude: Double
   public let longitude: Double

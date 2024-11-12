@@ -3,7 +3,7 @@
 public struct MeRequest: AuthenticatingServerRequest {
   public typealias Response = MeResponse
   public static let url = "me"
-  public static let authentication: ServerRequestAuthentication = .muToken
+  public static let authentication: ServerRequestAuthentication = .token
 
   public init() {}
 }

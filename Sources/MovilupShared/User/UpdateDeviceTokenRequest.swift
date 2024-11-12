@@ -3,7 +3,7 @@
 public struct UpdateDeviceTokenRequest: AuthenticatingServerRequest {
   public typealias Response = EmptyServerResponse
   public static let url = "update-device-token"
-  public static let authentication: ServerRequestAuthentication = .muToken
+  public static let authentication: ServerRequestAuthentication = .token
 
   public let deviceToken: String
 

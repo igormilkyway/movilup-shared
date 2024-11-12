@@ -12,11 +12,14 @@ public protocol ServerRequest: Codable, Sendable {
 public enum ServerRequestAuthentication: Sendable {
   case basic
   case token
-  case muToken
 }
 
 public protocol AuthenticatingServerRequest: ServerRequest where Error: AuthenticatingRequestError {
   static var authentication: ServerRequestAuthentication { get }
+}
+
+public protocol GoogleAuthenticatingServerRequest: ServerRequest where Error: AuthenticatingRequestError {
+  var token: String { get }
 }
 
 public protocol RequestError: LocalizedError, Codable, Comparable {
@@ -28,6 +31,9 @@ public protocol RequestError: LocalizedError, Codable, Comparable {
 public protocol AuthenticatingRequestError: RequestError {
   static var wrongCredentials: Self { get }
 }
+
+//public protocol GoogleAuthenticatingRequestError: RequestError {
+//}
 
 extension ServerRequest {
   public typealias Error = MeError
