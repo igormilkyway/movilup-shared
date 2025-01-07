@@ -1,9 +1,8 @@
 //  Created by Igor Sorokin
 
-import struct Foundation.Date
+public struct LogRequest: AuthenticatingServerRequest {
+  public typealias Success = LogResponse
 
-public struct LogRequest: ServerRequest {
-  public typealias Response = LogResponse
   public static let url = "log"
 
   let message: String
@@ -13,6 +12,6 @@ public struct LogRequest: ServerRequest {
   }
 }
 
-public struct LogResponse: ServerResponse {
+public struct LogResponse: ServerSuccess {
 
 }

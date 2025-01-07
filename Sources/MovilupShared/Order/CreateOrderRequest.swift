@@ -1,22 +1,15 @@
 //  Created by Igor Sorokin
 
-import Foundation
-
 public struct CreateOrderRequest: AuthenticatingServerRequest {
-  public typealias Response = OrderResponse
-  
+  public typealias Success = OrderResponse
+  public typealias Failure = MeError
+
   public static let url = "create_order"
-  public static let authentication: ServerRequestAuthentication = .token
+  public static let roles: [UserRole] = [.customer]
 
-  public let arrivedAtDeparturePlannedDate: Date
-  public let route: RouteDTO
-  public let cargo: CargoDTO
+  public let order: OrderResponse
 
-  public init(arrivedAtDeparturePlannedDate: Date, 
-              route: RouteDTO,
-              cargo: CargoDTO) {
-    self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
-    self.route = route
-    self.cargo = cargo
+  public init(order: OrderResponse) {
+    self.order = order
   }
 }

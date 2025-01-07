@@ -1,53 +1,22 @@
 //  Created by Igor Sorokin
 
-import Foundation
-
 public protocol ServerRequest: Codable, Sendable {
-  associatedtype Response: Codable
-  associatedtype Error: RequestError
+  associatedtype Success: ServerSuccess
+  associatedtype Failure: ServerFailure
 
   static var url: String { get }
 }
 
-public enum ServerRequestAuthentication: Sendable {
-  case basic
-  case token
+extension ServerRequest {
+  public typealias Success = EmptyServerResponse
+  public typealias Failure = MeError
 }
 
-public protocol AuthenticatingServerRequest: ServerRequest where Error: AuthenticatingRequestError {
-  static var authentication: ServerRequestAuthentication { get }
-}
-
-public protocol GoogleAuthenticatingServerRequest: ServerRequest where Error: AuthenticatingRequestError {
+public protocol GoogleServerRequest: ServerRequest {
   var token: String { get }
 }
 
-public protocol RequestError: LocalizedError, Codable, Comparable {
-//  static func processedByServer(localizedDescription: String) -> Self
-  static var processedByServer: Self { get }
-  static var resendingRequested: Self { get }
-}
-
-public protocol AuthenticatingRequestError: RequestError {
-  static var wrongCredentials: Self { get }
-}
-
-//public protocol GoogleAuthenticatingRequestError: RequestError {
-//}
-
-extension ServerRequest {
-  public typealias Error = MeError
-}
-
-public protocol ServerResponse: Codable, Sendable {}
-
-//extension Array: ServerResponse where Element: Sendable {}
-
-public struct EmptyServerResponse: ServerResponse {
-  public init() {}
-}
-
-extension Result: Codable where Success: Codable, Failure: Codable {
+extension Result: Codable where Success: ServerSuccess, Failure: ServerFailure {
   enum CodingKeys: String, CodingKey {
     case success
     case failure

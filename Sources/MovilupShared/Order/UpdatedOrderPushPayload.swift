@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
 
 public struct UpdatedOrderPushPayload: Codable, Sendable {
   public enum UpdateType: String, Codable, Sendable{

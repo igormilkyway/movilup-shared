@@ -1,10 +1,11 @@
 //  Created by Igor Sorokin
 
-import struct Foundation.Date
+public struct SignUpGoogleRequest: GoogleServerRequest {
+  public typealias Success = SignUpResponse
+  public typealias Failure = SignUpError
 
-public struct SignUpGoogleRequest: GoogleAuthenticatingServerRequest {
-  public typealias Response = SignUpResponse
   public static let url = "signup-google"
+  public static let role: UserRole? = .customer
 
   public let token: String
 

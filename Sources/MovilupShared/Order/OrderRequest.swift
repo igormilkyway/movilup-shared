@@ -1,11 +1,11 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
 
 public struct OrderRequest: AuthenticatingServerRequest {
-  public typealias Response = OrderResponse
+  public typealias Success = OrderResponse
+  
   public static let url = "order"
-  public static let authentication: ServerRequestAuthentication = .token
 
   public let id: UUID
 

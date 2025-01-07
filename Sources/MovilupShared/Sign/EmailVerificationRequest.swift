@@ -1,10 +1,8 @@
 //  Created by Igor Sorokin
 
-import struct Foundation.Date
-
 public struct EmailVerificationRequest: ServerRequest {
-  public typealias Response = SignUpResponse
-  public typealias Error = EmailVerificationRequestError
+  public typealias Success = MeResponse
+  public typealias Failure = EmailVerificationRequestError
 
   public static let url = "email-verification"
 
@@ -17,9 +15,11 @@ public struct EmailVerificationRequest: ServerRequest {
   }
 }
 
-public enum EmailVerificationRequestError: RequestError {
+public enum EmailVerificationRequestError: ServerFailure {
   case processedByServer
   case resendingRequested
 
+  case wrongEmail
+  case codeHasExpired // The code has expired
   case wrongCode
 }

@@ -1,9 +1,9 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
 
-public struct CargoRequest: ServerRequest {
-  public typealias Response = CargoResponse
+public struct CargoRequest: AuthenticatingServerRequest {
+  public typealias Success = CargoResponse
   
   public static let url = "cargo"
 
@@ -15,4 +15,4 @@ public struct CargoRequest: ServerRequest {
 }
 
 public typealias CargoResponse = CargoDTO
-extension CargoResponse: ServerResponse {}
+extension CargoResponse: ServerSuccess {}

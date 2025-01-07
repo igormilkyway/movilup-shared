@@ -1,9 +1,10 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
 
-public struct RouteRequest: ServerRequest {
-  public typealias Response = RouteResponse
+public struct RouteRequest: AuthenticatingServerRequest {
+  public typealias Success = RouteResponse
+
   public static let url = "route"
 
   public let orderID: UUID
@@ -13,7 +14,7 @@ public struct RouteRequest: ServerRequest {
   }
 }
 
-public struct RouteResponse: ServerResponse {
+public struct RouteResponse: ServerSuccess {
   public let fromID: UUID
   public let toID: UUID
 

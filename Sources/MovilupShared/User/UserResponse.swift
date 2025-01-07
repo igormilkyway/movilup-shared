@@ -1,10 +1,11 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
+import struct Foundation.Data
 
-public struct UserResponse: ServerResponse {
+public struct UserResponse: ServerSuccess {
   public let id: UUID
-  public let email: String
+  public let email: String?
   public let firstName: String
   public let lastName: String?
   public let phoneNumber: String?
@@ -13,7 +14,7 @@ public struct UserResponse: ServerResponse {
   public var isOnLine: Bool
 
   public init(id: UUID,
-              email: String,
+              email: String?,
               firstName: String,
               lastName: String?,
               phoneNumber: String?,

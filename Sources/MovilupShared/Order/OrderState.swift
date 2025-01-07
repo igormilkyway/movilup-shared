@@ -67,3 +67,17 @@ extension OrderState: Comparable {
     lhs.intValue < rhs.intValue
   }
 }
+
+extension OrderState: CaseIterable {
+  public static var allCases: [OrderState] {
+    [.created,
+     .takenByEstimator,
+     .estimated,
+     .approved,
+     .takenByDriver,
+     .arrivedAtDeparture,
+     .loaded,
+     .arrivedAtDestination,
+     .closed]
+  }
+}

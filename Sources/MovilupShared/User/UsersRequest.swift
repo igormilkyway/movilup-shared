@@ -1,13 +1,12 @@
 //  Created by Igor Sorokin
 
-import Foundation
-
 public typealias UsersResponse = [UserResponse]
 
 public struct UsersRequest: AuthenticatingServerRequest {
-  public typealias Response = UsersResponse
+  public typealias Success = UsersResponse
+
   public static let url = "users"
-  public static let authentication: ServerRequestAuthentication = .token
+  public static let roles: [UserRole] = [.owner, .loader]
 
   public let role: UserRole?
 

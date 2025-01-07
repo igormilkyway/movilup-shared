@@ -1,11 +1,10 @@
 //  Created by Igor Sorokin
 
-import struct Foundation.UUID
-
 public struct EstimateOrderRequest: AuthenticatingServerRequest {
-  public typealias Response = OrderResponse
+  public typealias Success = OrderResponse
+
   public static let url = "estimate_order"
-  public static let authentication: ServerRequestAuthentication = .token
+  public static let roles: [UserRole] = [.estimator]
 
   public let cargoItems: [CargoItemDTO]
 

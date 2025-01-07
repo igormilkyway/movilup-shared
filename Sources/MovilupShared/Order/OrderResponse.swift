@@ -1,10 +1,11 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
+import struct Foundation.Date
 
-public struct OrderResponse: ServerResponse {
-  public let id: UUID
-  public let arrivedAtDeparturePlannedDate: Date
+public struct OrderResponse: ServerSuccess {
+  public let id: UUID?
+  public var arrivedAtDeparturePlannedDate: Date?
   public let createdDate: Date
   public let takenByEstimatorDate: Date?
   public let estimatedDate: Date?
@@ -15,11 +16,14 @@ public struct OrderResponse: ServerResponse {
   public let arrivedAtDestinationDate: Date?
   public let closedDate: Date?
   public let state: OrderState
-  public let route: RouteDTO
+  public var route: RouteDTO
   public var cargo: CargoDTO
+  public var elevator: ElevatorType
+  public var requiresCrane: Bool
+  public var hasParking: Bool
 
-  public init(id: UUID,
-              arrivedAtDeparturePlannedDate: Date,
+  public init(id: UUID?,
+              arrivedAtDeparturePlannedDate: Date?,
               createdDate: Date,
               takenByEstimatorDate: Date?,
               estimatedDate: Date?,
@@ -31,7 +35,10 @@ public struct OrderResponse: ServerResponse {
               closedDate: Date?,
               state: OrderState,
               route: RouteDTO,
-              cargo: CargoDTO) {
+              cargo: CargoDTO,
+              elevator: ElevatorType,
+              requiresCrane: Bool,
+              hasParking: Bool) {
     self.id = id
     self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
     self.createdDate = createdDate
@@ -46,5 +53,8 @@ public struct OrderResponse: ServerResponse {
     self.state = state
     self.route = route
     self.cargo = cargo
+    self.elevator = elevator
+    self.requiresCrane = requiresCrane
+    self.hasParking = hasParking
   }
 }

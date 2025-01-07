@@ -1,12 +1,13 @@
 //  Created by Igor Sorokin
 
-import Foundation
+import struct Foundation.UUID
+import struct Foundation.Data
 
 public struct ImageRequest: AuthenticatingServerRequest {
-  public typealias Response = ImageResponse
-  public static let url = "image"
-  public static let authentication: ServerRequestAuthentication = .token
+  public typealias Success = ImageResponse
 
+  public static let url = "image"
+  
   public let imageUUID: UUID
 
   public init(imageUUID: UUID) {
@@ -14,7 +15,7 @@ public struct ImageRequest: AuthenticatingServerRequest {
   }
 }
 
-public struct ImageResponse: ServerResponse {
+public struct ImageResponse: ServerSuccess {
   public let imageData: Data
 
   public init(imageData: Data) {

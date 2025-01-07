@@ -5,17 +5,15 @@ public enum UserRole: String, Codable, Sendable {
   case customer
   case estimator
   case driver
+  case loader
+}
 
-  public var intValue: Int {
-    switch self {
-      case .customer:
-        0
-      case .driver:
-        1
-      case .estimator:
-        2
-      case .owner:
-        3
-    }
+extension UserRole: CaseIterable {
+  public static var allCases: [UserRole] {
+    [.owner,
+     .customer,
+     .estimator,
+     .driver,
+     .loader]
   }
 }

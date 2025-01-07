@@ -1,8 +1,8 @@
 ////  Created by Igor Sorokin
 //
-//import Foundation
+//import struct Foundation.UUID
 //
-//public struct LocationRequest: ServerRequest {
+//public struct LocationRequest: AuthenticatingServerRequest {
 //  public typealias Response = LocationResponse
 //  public static let url = "location"
 //  

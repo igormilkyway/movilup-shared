@@ -1,13 +1,11 @@
 //  Created by Igor Sorokin
 
-import Foundation
-
 public typealias OrdersResponse = [OrderResponse]
 
 public struct OrdersRequest: AuthenticatingServerRequest {
-  public typealias Response = OrdersResponse
+  public typealias Success = OrdersResponse
+
   public static let url = "orders"
-  public static let authentication: ServerRequestAuthentication = .token
 
   public let state: OrderState?
 
