@@ -1,19 +1,19 @@
 //  Created by Igor Sorokin
 
-import struct Foundation.UUID
+//import struct Foundation.UUID
 
 public struct DistanceDTO: Codable, Sendable {
-  public let id: UUID?
-  public let from: LocationDTO
-  public let to: LocationDTO
+//  public let id: UUID?
+//  public let from: LocationDTO
+//  public let to: LocationDTO
   public let meters: Double
   public let minutes: Double
   public let isReal: Bool
 
-  public init(id: UUID? = nil, from: LocationDTO, to: LocationDTO, meters: Double, minutes: Double, isReal: Bool) {
-    self.id = id
-    self.from = from
-    self.to = to
+  public init(/*id: UUID? = nil, from: LocationDTO, to: LocationDTO, */meters: Double, minutes: Double, isReal: Bool) {
+//    self.id = id
+//    self.from = from
+//    self.to = to
     self.meters = meters
     self.minutes = minutes
     self.isReal = isReal
