@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public struct CargoRequest: AuthenticatingServerRequest {
+public struct CargoRequest: TokenAuthenticatingServerRequest {
   public typealias Success = CargoResponse
   
   public static let url = "cargo"

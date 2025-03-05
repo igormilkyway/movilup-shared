@@ -2,7 +2,7 @@
 
 //import struct Foundation.UUID
 
-public struct DistanceDTO: Codable, Sendable {
+public struct DistanceDTO: Codable, Sendable, Equatable {
 //  public let id: UUID?
 //  public let from: LocationDTO
 //  public let to: LocationDTO

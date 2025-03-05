@@ -5,7 +5,7 @@ public struct SignInGoogleRequest: GoogleServerRequest {
   public typealias Failure = MeError
 
   public static let url = "signin-google"
-  public static let role: UserRole? = nil
+//  public static let role: UserRole? = nil
 
   public let token: String
 

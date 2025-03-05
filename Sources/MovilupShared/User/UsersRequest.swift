@@ -2,7 +2,7 @@
 
 public typealias UsersResponse = [UserResponse]
 
-public struct UsersRequest: AuthenticatingServerRequest {
+public struct UsersRequest: TokenAuthenticatingServerRequest {
   public typealias Success = UsersResponse
 
   public static let url = "users"

@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct UpdateIsOnLineRequest: AuthenticatingServerRequest {
+public struct UpdateIsOnLineRequest: TokenAuthenticatingServerRequest {
   public static let url = "update-isonline"
 
   public let isOnLine: Bool

@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct CreateOrderRequest: AuthenticatingServerRequest {
+public struct CreateOrderRequest: TokenAuthenticatingServerRequest {
   public typealias Success = OrderResponse
   public typealias Failure = MeError
 

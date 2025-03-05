@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct SendMessageRequest: AuthenticatingServerRequest {
+public struct SendMessageRequest: TokenAuthenticatingServerRequest {
   public static let url = "send_message"
 
   public let chat: Chat

@@ -2,7 +2,7 @@
 //
 //import struct Foundation.UUID
 //
-//public struct LocationRequest: AuthenticatingServerRequest {
+//public struct LocationRequest: TokenAuthenticatingServerRequest {
 //  public typealias Response = LocationResponse
 //  public static let url = "location"
 //  

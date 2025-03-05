@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct LogRequest: AuthenticatingServerRequest {
+public struct LogRequest: TokenAuthenticatingServerRequest {
   public typealias Success = LogResponse
 
   public static let url = "log"

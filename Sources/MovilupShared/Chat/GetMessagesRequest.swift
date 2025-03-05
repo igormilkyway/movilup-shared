@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct GetMessagesRequest: AuthenticatingServerRequest {
+public struct GetMessagesRequest: TokenAuthenticatingServerRequest {
   public typealias Success = [MessageResponse]
   public static let url = "get_messages"
 

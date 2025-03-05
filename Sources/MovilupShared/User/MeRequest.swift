@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct MeRequest: AuthenticatingServerRequest {
+public struct MeRequest: TokenAuthenticatingServerRequest {
   public typealias Success = MeResponse
 
   public static let url = "me"

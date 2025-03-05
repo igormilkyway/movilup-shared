@@ -3,7 +3,7 @@
 import struct Foundation.UUID
 import struct CoreLocation.CLLocationCoordinate2D
 
-public struct DriverLocationsRequest: AuthenticatingServerRequest {
+public struct DriverLocationsRequest: TokenAuthenticatingServerRequest {
   public typealias Success = [DriverLocation]
 
   public static let url = "driver-locations"
