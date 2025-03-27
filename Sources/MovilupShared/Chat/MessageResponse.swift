@@ -7,9 +7,9 @@ public struct MessageResponse: ServerSuccess {
   public let id: UUID
   public let date: Date
   public let text: String
-  public let sender: UserResponse
+  public let sender: UserDTO
 
-  public init(id: UUID, date: Date, text: String, sender: UserResponse) {
+  public init(id: UUID, date: Date, text: String, sender: UserDTO) {
     self.id = id
     self.date = date
     self.text = text

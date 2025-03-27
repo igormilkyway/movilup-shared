@@ -3,7 +3,7 @@
 import struct Foundation.UUID
 import struct Foundation.Data
 
-public struct UserResponse: ServerSuccess {
+public struct UserDTO: ServerSuccess {
   public let id: UUID
   public let email: String?
   public let firstName: String
