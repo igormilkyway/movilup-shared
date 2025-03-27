@@ -14,4 +14,8 @@ public struct CargoItemDTO: Codable, Sendable {
     self.price = price
     self.quantity = quantity
   }
+
+  public var cost: Int {
+    price * quantity
+  }
 }

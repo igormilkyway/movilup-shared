@@ -57,4 +57,8 @@ public struct OrderResponse: ServerSuccess {
     self.requiresCrane = requiresCrane
     self.hasParking = hasParking
   }
+
+  public var cost: Int {
+    route.cost + cargo.cost
+  }
 }

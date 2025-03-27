@@ -24,4 +24,10 @@ public struct CargoDTO: Codable, Sendable {
   public var isValid: Bool {
     !photos.isEmpty
   }
+
+  public var cost: Int {
+    items
+      .map { $0.cost }
+      .reduce(0, +)
+  }
 }

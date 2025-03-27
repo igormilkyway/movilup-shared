@@ -14,4 +14,12 @@ public struct RouteDTO: Codable, Sendable {
     self.to = to
     self.fromTo = fromTo
   }
+
+  public var cost: Int {
+    if let meters = fromTo?.meters {
+      Int(meters * 0.1)
+    } else {
+      500
+    }
+  }
 }
