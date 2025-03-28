@@ -3,7 +3,7 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
-public struct OrderResponse: ServerSuccess {
+public struct OrderDTO: ServerSuccess {
   public let id: UUID?
   public var arrivedAtDeparturePlannedDate: Date?
   public let createdDate: Date
@@ -15,6 +15,7 @@ public struct OrderResponse: ServerSuccess {
   public let loadedDate: Date?
   public let arrivedAtDestinationDate: Date?
   public let closedDate: Date?
+  public let finalCost: Int?
   public let state: OrderState
   public var route: RouteDTO
   public var cargo: CargoDTO
@@ -33,6 +34,7 @@ public struct OrderResponse: ServerSuccess {
               loadedDate: Date?,
               arrivedAtDestinationDate: Date?,
               closedDate: Date?,
+              finalCost: Int?,
               state: OrderState,
               route: RouteDTO,
               cargo: CargoDTO,
@@ -50,6 +52,7 @@ public struct OrderResponse: ServerSuccess {
     self.loadedDate = loadedDate
     self.arrivedAtDestinationDate = arrivedAtDestinationDate
     self.closedDate = closedDate
+    self.finalCost = finalCost
     self.state = state
     self.route = route
     self.cargo = cargo

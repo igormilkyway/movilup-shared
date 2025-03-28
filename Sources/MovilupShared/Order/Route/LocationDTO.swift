@@ -1,7 +1,6 @@
 //
 
 import struct Foundation.UUID
-import class CoreLocation.CLLocation
 
 public struct LocationDTO: Codable, Sendable {
   public var id: UUID?
@@ -16,7 +15,7 @@ public struct LocationDTO: Codable, Sendable {
     self.longitude = longitude
   }
 
-  public var location: CLLocation {
-    .init(latitude: latitude, longitude: longitude)
-  }
+//  public var location: LocationCoordinate2D {
+//    .init(latitude: latitude, longitude: longitude)
+//  }
 }

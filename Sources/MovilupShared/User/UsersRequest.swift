@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public typealias UsersResponse = [UserResponse]
+public typealias UsersResponse = [UserDTO]
 
 public struct UsersRequest: TokenAuthenticatingServerRequest {
   public typealias Success = UsersResponse

@@ -35,6 +35,10 @@ let package = Package(
       targets: ["MovilupShared"]),
   ],
   dependencies: [
+//    .package(url: "https://github.com/mapbox/turf-swift.git", from: "4.0.0"),
+//    .package(url: "https://github.com/mapbox/mapbox-directions-swift.git", from: "2.14.0"),
+//    .package(url: "https://github.com/mapbox/turf-swift.git", "2.8.0"..<"2.9.0"),
+
 //    .package(url: "https://github.com/BinaryDennis/mapbox-directions-swift.git", revision: "13e41abb38dfbf21a1703f5249e4ce2b185eb70c"),
 //    .package(url: "https://github.com/mapbox/mapbox-directions-swift.git", from: "2.14.0"),
   ],
@@ -44,6 +48,7 @@ let package = Package(
     .target(
       name: "MovilupShared",
       dependencies: [
+//        .product(name: "Turf", package: "turf-swift"),
 //        .product(name: "MapboxDirections", package: "mapbox-directions-swift"),
       ]),
     .testTarget(

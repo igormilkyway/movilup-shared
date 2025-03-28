@@ -1,7 +1,5 @@
 //  Created by Igor Sorokin
 
-//import struct Foundation.UUID
-
 public struct DistanceDTO: Codable, Sendable, Equatable {
 //  public let id: UUID?
 //  public let from: LocationDTO

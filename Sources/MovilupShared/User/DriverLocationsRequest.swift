@@ -1,7 +1,6 @@
 //  Created by Igor Sorokin
 
 import struct Foundation.UUID
-import struct CoreLocation.CLLocationCoordinate2D
 
 public struct DriverLocationsRequest: TokenAuthenticatingServerRequest {
   public typealias Success = [DriverLocation]
@@ -14,11 +13,13 @@ public struct DriverLocationsRequest: TokenAuthenticatingServerRequest {
 public struct DriverLocation: ServerSuccess {
   public let driverID: UUID
   public let driverName: String
-  public let coordinate: CLLocationCoordinate2D
+  public let latitude: Double
+  public let longitude: Double
 
-  public init(driverID: UUID, driverName: String, coordinate: CLLocationCoordinate2D) {
+  public init(driverID: UUID, driverName: String, latitude: Double, longitude: Double) {
     self.driverID = driverID
     self.driverName = driverName
-    self.coordinate = coordinate
+    self.latitude = latitude
+    self.longitude = longitude
   }
 }

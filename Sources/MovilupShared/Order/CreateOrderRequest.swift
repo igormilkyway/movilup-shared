@@ -1,15 +1,15 @@
 //  Created by Igor Sorokin
 
 public struct CreateOrderRequest: TokenAuthenticatingServerRequest {
-  public typealias Success = OrderResponse
+  public typealias Success = OrderDTO
   public typealias Failure = MeError
 
   public static let url = "create_order"
   public static let roles: [UserRole] = [.customer]
 
-  public let order: OrderResponse
+  public let order: OrderDTO
 
-  public init(order: OrderResponse) {
+  public init(order: OrderDTO) {
     self.order = order
   }
 }
