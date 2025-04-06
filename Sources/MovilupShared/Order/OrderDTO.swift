@@ -19,9 +19,6 @@ public struct OrderDTO: ServerSuccess {
   public let state: OrderState
   public var route: RouteDTO
   public var cargo: CargoDTO
-  public var elevator: ElevatorType
-  public var requiresCrane: Bool
-  public var hasParking: Bool
 
   public init(id: UUID?,
               arrivedAtDeparturePlannedDate: Date?,
@@ -37,10 +34,7 @@ public struct OrderDTO: ServerSuccess {
               finalCost: Int?,
               state: OrderState,
               route: RouteDTO,
-              cargo: CargoDTO,
-              elevator: ElevatorType,
-              requiresCrane: Bool,
-              hasParking: Bool) {
+              cargo: CargoDTO) {
     self.id = id
     self.arrivedAtDeparturePlannedDate = arrivedAtDeparturePlannedDate
     self.createdDate = createdDate
@@ -56,9 +50,6 @@ public struct OrderDTO: ServerSuccess {
     self.state = state
     self.route = route
     self.cargo = cargo
-    self.elevator = elevator
-    self.requiresCrane = requiresCrane
-    self.hasParking = hasParking
   }
 
   public var cost: Int {
