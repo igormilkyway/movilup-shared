@@ -1,12 +1,6 @@
 //  Created by Igor Sorokin
 
 public struct GetMessagesRequest: TokenAuthenticatingServerRequest {
-  public typealias Success = [MessageResponse]
+  public typealias Success = [MessageDTO]
   public static let url = "get_messages"
-
-  public let chat: Chat
-
-  public init(chat: Chat) {
-    self.chat = chat
-  }
 }

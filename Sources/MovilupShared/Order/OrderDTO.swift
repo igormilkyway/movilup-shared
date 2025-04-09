@@ -55,4 +55,6 @@ public struct OrderDTO: ServerSuccess {
   public var cost: Int {
     route.cost + cargo.cost
   }
+
+  public static let updatedActiveOrderNotificationCategoryID = "UpdatedActiveOrder"
 }

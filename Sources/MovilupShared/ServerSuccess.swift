@@ -7,3 +7,5 @@ extension Array: ServerSuccess where Element: ServerSuccess {}
 public struct EmptyServerResponse: ServerSuccess {
   public init() {}
 }
+
+extension Optional: ServerSuccess where Wrapped: ServerSuccess {}

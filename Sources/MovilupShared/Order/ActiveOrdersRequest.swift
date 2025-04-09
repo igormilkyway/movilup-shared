@@ -1,9 +1,9 @@
 //  Created by Igor Sorokin
 
-public struct ActiveOrdersRequest: TokenAuthenticatingServerRequest {
-  public typealias Success = OrdersResponse
-  
-  public static let url = "active_orders"
+public struct ActiveOrderRequest: TokenAuthenticatingServerRequest {
+  public typealias Success = OrderDTO?
+
+  public static let url = "active_order"
 
   public init() {}
 }

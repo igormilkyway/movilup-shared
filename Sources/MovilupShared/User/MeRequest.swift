@@ -10,10 +10,10 @@ public struct MeRequest: TokenAuthenticatingServerRequest {
 
 public struct MeResponse: ServerSuccess {
   public let token: String
-  public let usersResponseElement: UserDTO
+  public let user: UserDTO
 
-  public init(token: String, usersResponseElement: UserDTO) {
+  public init(token: String, user: UserDTO) {
     self.token = token
-    self.usersResponseElement = usersResponseElement
+    self.user = user
   }
 }

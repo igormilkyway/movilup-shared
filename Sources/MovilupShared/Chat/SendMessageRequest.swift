@@ -3,11 +3,9 @@
 public struct SendMessageRequest: TokenAuthenticatingServerRequest {
   public static let url = "send_message"
 
-  public let chat: Chat
-  public let text: String
+  public let message: MessageDTO
 
-  public init(chat: Chat, text: String) {
-    self.chat = chat
-    self.text = text
+  public init(message: MessageDTO) {
+    self.message = message
   }
 }
