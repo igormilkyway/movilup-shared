@@ -3,7 +3,9 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
-public struct OrderDTO: ServerSuccess {
+public struct OrderDTO: DTOType {
+  public static var url = "order"
+
   public let id: UUID?
   public var arrivedAtDeparturePlannedDate: Date?
   public let createdDate: Date

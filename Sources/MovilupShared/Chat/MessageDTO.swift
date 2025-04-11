@@ -3,7 +3,9 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
-public struct MessageDTO: ServerSuccess {
+public struct MessageDTO: DTOType {
+  public static var url = "message"
+
   public enum Direction: Codable, Sendable {
     case outgoing
     case incoming
