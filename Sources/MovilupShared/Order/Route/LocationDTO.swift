@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public struct LocationDTO: DTOType {
+public struct LocationDTO: DTOType, Equatable {
   public static var url = "location"
 
   public var id: UUID?
