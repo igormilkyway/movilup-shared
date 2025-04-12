@@ -3,7 +3,9 @@
 import struct Foundation.UUID
 import struct Foundation.Data
 
-public struct CargoPhotoDTO: Codable, Sendable {
+public struct CargoPhotoDTO: DTOType {
+  public static var url = "cargo_photo"
+
   public let id: UUID?
   public let itemIdentifier: String
   public var imageData: Data?

@@ -2,7 +2,9 @@
 
 import struct Foundation.UUID
 
-public struct CargoItemDTO: Codable, Sendable {
+public struct CargoItemDTO: DTOType {
+  public static var url = "cargo_item"
+
   public let id: UUID?
   public var name: String
   public var price: Int

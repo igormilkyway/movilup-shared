@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public struct UpdatedOrderPushPayload: Codable, Sendable {
+public struct UpdatedDTOPushPayload: Codable, Sendable {
   public enum UpdateType: String, Codable, Sendable{
     case created
     case updated
@@ -10,10 +10,10 @@ public struct UpdatedOrderPushPayload: Codable, Sendable {
   }
 
   public let type: UpdateType
-  public let orderID: UUID
+  public let id: UUID
 
-  public init(type: UpdateType, orderID: UUID) {
+  public init(type: UpdateType, id: UUID) {
     self.type = type
-    self.orderID = orderID
+    self.id = id
   }
 }

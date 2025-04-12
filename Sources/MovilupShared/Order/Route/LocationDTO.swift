@@ -2,7 +2,9 @@
 
 import struct Foundation.UUID
 
-public struct LocationDTO: Codable, Sendable {
+public struct LocationDTO: DTOType {
+  public static var url = "location"
+
   public var id: UUID?
   public var address: String?
   public var latitude: Double

@@ -2,7 +2,9 @@
 
 import struct Foundation.UUID
 
-public struct RouteDTO: Codable, Sendable {
+public struct RouteDTO: DTOType {
+  public static var url = "route"
+
   public var id: UUID?
   public var from: LocationDTO
   public var to: LocationDTO

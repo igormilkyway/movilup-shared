@@ -4,7 +4,7 @@ import struct Foundation.UUID
 import struct Foundation.Date
 
 public struct MessageDTO: DTOType {
-  public static var url = "message"
+  public static let url = "message"
 
   public enum Direction: Codable, Sendable {
     case outgoing
@@ -24,6 +24,4 @@ public struct MessageDTO: DTOType {
     self.direction = direction
     self.counterparty = counterparty
   }
-
-  public static let incomingMessageNotificationCategoryID = "IncomingMessage"
 }

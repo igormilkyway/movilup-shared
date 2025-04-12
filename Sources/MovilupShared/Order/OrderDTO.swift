@@ -4,7 +4,7 @@ import struct Foundation.UUID
 import struct Foundation.Date
 
 public struct OrderDTO: DTOType {
-  public static var url = "order"
+  public static let url = "order"
 
   public let id: UUID?
   public var arrivedAtDeparturePlannedDate: Date?
@@ -57,6 +57,4 @@ public struct OrderDTO: DTOType {
   public var cost: Int {
     route.cost + cargo.cost
   }
-
-  public static let updatedActiveOrderNotificationCategoryID = "UpdatedActiveOrder"
 }
