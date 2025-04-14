@@ -17,7 +17,7 @@ public struct MessageDTO: DTOType {
   public let direction: Direction
   public let counterparty: UserRole
 
-  public init(id: UUID? = nil, date: Date = .now, text: String, direction: Direction, counterparty: UserRole) {
+  public init(id: UUID?, date: Date, text: String, direction: Direction, counterparty: UserRole) {
     self.id = id
     self.date = date
     self.text = text

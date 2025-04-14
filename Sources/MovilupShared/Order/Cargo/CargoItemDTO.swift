@@ -10,7 +10,7 @@ public struct CargoItemDTO: DTOType {
   public var price: Int
   public var quantity: Int
 
-  public init(id: UUID? = nil, name: String, price: Int, quantity: Int) {
+  public init(id: UUID?, name: String, price: Int, quantity: Int) {
     self.id = id
     self.name = name
     self.price = price

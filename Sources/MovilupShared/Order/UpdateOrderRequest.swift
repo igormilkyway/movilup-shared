@@ -11,7 +11,7 @@ public struct UpdateOrderRequest: TokenAuthenticatingServerRequest {
   public let orderID: UUID?
   public let location: LocationDTO?
 
-  public init(to state: OrderState, orderID: UUID? = nil, location: LocationDTO? = nil) {
+  public init(to state: OrderState, orderID: UUID?, location: LocationDTO?) {
     self.state = state
     self.orderID = orderID
     self.location = location

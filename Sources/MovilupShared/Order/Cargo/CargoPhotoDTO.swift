@@ -11,7 +11,7 @@ public struct CargoPhotoDTO: DTOType {
   public var imageData: Data?
   public let imageUUID: UUID?
 
-  public init(id: UUID? = nil, itemIdentifier: String, imageData: Data?, imageUUID: UUID?) {
+  public init(id: UUID?, itemIdentifier: String, imageData: Data?, imageUUID: UUID?) {
     self.id = id
     self.itemIdentifier = itemIdentifier
     self.imageData = imageData

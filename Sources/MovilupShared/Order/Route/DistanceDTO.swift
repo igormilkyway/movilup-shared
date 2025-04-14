@@ -8,7 +8,7 @@ public struct DistanceDTO: Codable, Sendable, Equatable {
   public let minutes: Double
   public let isReal: Bool
 
-  public init(id: UUID? = nil, meters: Double, minutes: Double, isReal: Bool) {
+  public init(id: UUID?, meters: Double, minutes: Double, isReal: Bool) {
     self.id = id
     self.meters = meters
     self.minutes = minutes

@@ -10,7 +10,7 @@ public struct RouteDTO: DTOType {
   public var to: LocationDTO
   public var fromTo: DistanceDTO
 
-  public init(id: UUID? = nil, from: LocationDTO, to: LocationDTO, fromTo: DistanceDTO) {
+  public init(id: UUID?, from: LocationDTO, to: LocationDTO, fromTo: DistanceDTO) {
     self.id = id
     self.from = from
     self.to = to
