@@ -9,11 +9,11 @@ public struct UpdateOrderRequest: TokenAuthenticatingServerRequest {
 
   public let state: OrderState
   public let orderID: UUID?
-  public let location: LocationDTO?
+  public let coordinate: CoordinateDTO?
 
-  public init(to state: OrderState, orderID: UUID?, location: LocationDTO?) {
+  public init(to state: OrderState, orderID: UUID?, coordinate: CoordinateDTO?) {
     self.state = state
     self.orderID = orderID
-    self.location = location
+    self.coordinate = coordinate
   }
 }
