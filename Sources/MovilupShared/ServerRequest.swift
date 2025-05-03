@@ -5,11 +5,23 @@ public protocol ServerRequest: Codable, Sendable {
   associatedtype Failure: ServerFailure
 
   static var url: String { get }
+
+  static var apiVersion: String { get } // SemVer
+
+  var apiVersion: String { get } // SemVer
 }
 
 extension ServerRequest {
   public typealias Success = EmptyServerResponse
   public typealias Failure = MeError
+
+  public static var apiVersion: String {
+    "1.0.0"
+  }
+
+  public var apiVersion: String {
+    Self.apiVersion
+  }
 }
 
 public protocol GoogleServerRequest: ServerRequest {

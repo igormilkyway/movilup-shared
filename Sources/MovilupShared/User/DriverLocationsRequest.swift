@@ -13,13 +13,11 @@ public struct DriverLocationsRequest: TokenAuthenticatingServerRequest {
 public struct DriverLocation: ServerSuccess {
   public let driverID: UUID
   public let driverName: String
-  public let latitude: Double
-  public let longitude: Double
+  public let coordinate: CoordinateDTO
 
-  public init(driverID: UUID, driverName: String, latitude: Double, longitude: Double) {
+  public init(driverID: UUID, driverName: String, coordinate: CoordinateDTO) {
     self.driverID = driverID
     self.driverName = driverName
-    self.latitude = latitude
-    self.longitude = longitude
+    self.coordinate = coordinate
   }
 }
