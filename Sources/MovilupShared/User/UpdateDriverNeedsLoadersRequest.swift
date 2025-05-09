@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct UpdateDriverNeedsLoadersRequest: TokenAuthenticatingServerRequest {
+public struct UpdateDriverNeedsLoadersRequest: TokenAuthenticatingServerRequest, PostRequest {
   public static let url = "update-driver-needs-loaders"
   public static let roles: [UserRole] = [.driver]
 

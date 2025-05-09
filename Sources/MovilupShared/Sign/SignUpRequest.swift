@@ -5,7 +5,7 @@ public enum SignType: Codable, Sendable {
   case passkey
 }
 
-public struct SignUpRequest: ServerRequest {
+public struct SignUpRequest: ServerRequest, PostRequest {
   public typealias Success = SignUpResponse
   public typealias Failure = SignUpError
 

@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct SendMessageRequest: TokenAuthenticatingServerRequest {
+public struct SendMessageRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = MessageDTO
 
   public static let url = "send_message"

@@ -22,7 +22,7 @@ extension LocationDTO {
   }
 }
 
-extension LocationDTO.Floor: @retroactive RawRepresentable {
+extension LocationDTO.Floor: RawRepresentable {
   public var rawValue: String {
     switch self {
       case .number(let number):

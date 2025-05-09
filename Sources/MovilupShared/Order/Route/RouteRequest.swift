@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public struct RouteRequest: TokenAuthenticatingServerRequest {
+public struct RouteRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = RouteResponse
 
   public static let url = "route"

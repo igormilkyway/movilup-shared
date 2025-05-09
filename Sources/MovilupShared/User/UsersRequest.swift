@@ -2,7 +2,7 @@
 
 public typealias UsersResponse = [UserDTO]
 
-public struct UsersRequest: TokenAuthenticatingServerRequest {
+public struct UsersRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = UsersResponse
 
   public static let url = "users"

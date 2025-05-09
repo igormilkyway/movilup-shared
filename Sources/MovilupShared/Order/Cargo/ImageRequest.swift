@@ -3,7 +3,7 @@
 import struct Foundation.UUID
 import struct Foundation.Data
 
-public struct ImageRequest: TokenAuthenticatingServerRequest {
+public struct ImageRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = ImageResponse
 
   public static let url = "image"

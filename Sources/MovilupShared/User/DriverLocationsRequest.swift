@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public struct DriverLocationsRequest: TokenAuthenticatingServerRequest {
+public struct DriverLocationsRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = [DriverLocation]
 
   public static let url = "driver-locations"

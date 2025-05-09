@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct SignInGoogleRequest: GoogleServerRequest {
+public struct SignInGoogleRequest: GoogleServerRequest, PostRequest {
   public typealias Success = MeResponse
   public typealias Failure = MeError
 

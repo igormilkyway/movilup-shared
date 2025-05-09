@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct SignUpGoogleRequest: GoogleServerRequest {
+public struct SignUpGoogleRequest: GoogleServerRequest, PostRequest {
   public typealias Success = SignUpResponse
   public typealias Failure = SignUpError
 

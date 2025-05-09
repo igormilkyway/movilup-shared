@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct EstimateOrderRequest: TokenAuthenticatingServerRequest {
+public struct EstimateOrderRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = OrderDTO
 
   public static let url = "estimate_order"

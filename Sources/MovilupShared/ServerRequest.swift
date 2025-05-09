@@ -1,10 +1,36 @@
 //  Created by Igor Sorokin
 
-public protocol ServerRequest: Codable, Sendable {
+//public protocol API {
+//  static var baseURL: String { get }
+//}
+//
+//public struct MUAPI: API {
+//  public static var baseURL = ""
+//}
+
+protocol MUServerRequest: ServerRequest, PostRequest { }
+
+//extension MUServerRequest {
+//  static var method: HTTPMethod {
+//    .post
+//  }
+//}
+//
+//protocol APIServerRequest: ServerRequest {
+//  associatedtype RequestAPI: API
+//}
+//
+//public enum HTTPMethod {
+//  case get
+//  case post
+//}
+
+public protocol ServerRequest: Codable, Sendable, MethodRequest {
   associatedtype Success: ServerSuccess
   associatedtype Failure: ServerFailure
 
   static var url: String { get }
+//  static var method: HTTPMethod { get }
 
   static var apiVersion: String { get } // SemVer
 

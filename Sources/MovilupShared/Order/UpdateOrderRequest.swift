@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public struct UpdateOrderRequest: TokenAuthenticatingServerRequest {
+public struct UpdateOrderRequest: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = OrderDTO
 
   public static let url = "update_order"

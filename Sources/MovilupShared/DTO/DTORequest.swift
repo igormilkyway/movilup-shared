@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct DTORequest<DTO: DTOType>: TokenAuthenticatingServerRequest {
+public struct DTORequest<DTO: DTOType>: TokenAuthenticatingServerRequest, PostRequest {
   public typealias Success = DTO
 
   public static var url: String { DTO.url }

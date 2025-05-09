@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct UpdateDriverLocationRequest: TokenAuthenticatingServerRequest {
+public struct UpdateDriverLocationRequest: TokenAuthenticatingServerRequest, PostRequest {
   public static let url = "update-driver-location"
   public static let roles: [UserRole] = [.driver]
 

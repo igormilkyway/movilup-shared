@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct EmailVerificationRequest: ServerRequest {
+public struct EmailVerificationRequest: ServerRequest, PostRequest {
   public typealias Success = MeResponse
   public typealias Failure = EmailVerificationRequestError
 

@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct SignInRequest: BasicAuthenticatingServerRequest {
+public struct SignInRequest: BasicAuthenticatingServerRequest, PostRequest {
   public typealias Success = MeResponse
   public typealias Failure = MeError
 

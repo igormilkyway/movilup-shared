@@ -1,6 +1,6 @@
 //  Created by Igor Sorokin
 
-public struct UpdateDeviceTokenRequest: TokenAuthenticatingServerRequest {
+public struct UpdateDeviceTokenRequest: TokenAuthenticatingServerRequest, PostRequest {
   public static let url = "update-device-token"
 
   public let deviceToken: String
