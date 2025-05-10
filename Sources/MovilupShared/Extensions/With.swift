@@ -47,7 +47,7 @@ extension ValueWith {
     return s
   }
 
-  func with(_ closure: (inout Self) throws -> Void) throws -> Self {
+  func with(_ closure: (inout Self) throws -> Void) rethrows -> Self {
     var s = self
     try closure(&s)
     return s

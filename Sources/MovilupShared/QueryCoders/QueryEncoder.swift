@@ -38,7 +38,7 @@ class QueryKeyedEncodingContainer<Key: CodingKey>: KeyedEncodingContainerProtoco
       storage.append("&")
     }
 
-    storage.append("\(key.stringValue)=\(percentEncodedValue)")
+    storage.append("\(key.stringValue)=\(stringValue)") // percentEncodedValue
   }
 
 //  func encode(_ value: String, forKey key: Key) throws {

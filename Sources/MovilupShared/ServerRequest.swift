@@ -25,12 +25,25 @@ protocol MUServerRequest: ServerRequest, PostRequest { }
 //  case post
 //}
 
-public protocol ServerRequest: Codable, Sendable, MethodRequest {
-  associatedtype Success: ServerSuccess
-  associatedtype Failure: ServerFailure
+//Result<Request.Success, Request.Failure>
+
+public protocol ServerResponse: Codable, Sendable {
+
+}
+
+extension Result: ServerResponse where Success: ServerSuccess, Failure: ServerFailure {
+
+}
+
+public protocol ServerBaseRequest: Codable, Sendable, MethodRequest {
+  associatedtype Response: ServerResponse
 
   static var url: String { get }
-//  static var method: HTTPMethod { get }
+}
+
+public protocol ServerRequest: ServerBaseRequest {
+  associatedtype Success: ServerSuccess
+  associatedtype Failure: ServerFailure
 
   static var apiVersion: String { get } // SemVer
 
@@ -38,6 +51,7 @@ public protocol ServerRequest: Codable, Sendable, MethodRequest {
 }
 
 extension ServerRequest {
+  public typealias Response = Result<Success, Failure>
   public typealias Success = EmptyServerResponse
   public typealias Failure = MeError
 
