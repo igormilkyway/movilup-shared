@@ -23,7 +23,7 @@ import PackageDescription
 //#endif
 
 let package = Package(
-  name: "movilup-shared",
+  name: "MovilupShared",
   platforms: [
     .macOS(.v13),
     .iOS(.v16),

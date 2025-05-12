@@ -75,3 +75,5 @@ class QueryDecoder: TopLevelDecoder {
     return try T.init(from: decoder)
   }
 }
+
+extension QueryEncoder: With {}

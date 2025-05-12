@@ -34,8 +34,6 @@ extension With {
   }
 }
 
-extension QueryEncoder: With {}
-
 protocol ValueWith {
   func with(_ closure: (inout Self) -> Void) -> Self
 }

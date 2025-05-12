@@ -10,6 +10,10 @@ public protocol AccessTokenBaseRequest: ServerBaseRequest {
   var accessToken: String { get set }
 }
 
+public protocol SearchBoxRequest: AccessTokenBaseRequest {
+
+}
+
 public protocol URLable {
   static var url: String { get }
 }
