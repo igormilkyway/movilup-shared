@@ -34,9 +34,7 @@ class QueryKeyedEncodingContainer<Key: CodingKey>: KeyedEncodingContainerProtoco
       ))
     }
 
-    if !storage.isEmpty {
-      storage.append("&")
-    }
+    if !storage.isEmpty { storage.append("&") }
 
     storage.append("\(key.stringValue)=\(stringValue)") // percentEncodedValue
   }

@@ -1,7 +1,13 @@
 //  Created by Igor Sorokin
 
-import CoreGraphics
-import SwiftUI
+import Foundation
+
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
+//import CoreGraphics
+//import SwiftUI
 
 extension NSObjectProtocol {
   func with(_ closure: (Self) -> Void) -> Self {
@@ -53,7 +59,7 @@ extension ValueWith {
 }
 
 extension Date.FormatStyle: ValueWith {}
-extension Transaction: ValueWith {}
+//extension Transaction: ValueWith {}
 extension Calendar: ValueWith {}
 extension Locale: ValueWith {}
 extension CharacterSet: ValueWith {}

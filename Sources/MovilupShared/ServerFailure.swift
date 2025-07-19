@@ -2,10 +2,11 @@
 
 import protocol Foundation.LocalizedError
 
-public protocol ServerFailure: LocalizedError, Codable, Comparable {
+public protocol ServerFailure: LocalizedError, ServerResponse {
   //  static func processedByServer(localizedDescription: String) -> Self
   static var processedByServer: Self { get }
   static var resendingRequested: Self { get }
+  static func transportError(_: String) -> Self
 }
 
 public protocol AuthenticatingServerFailure: ServerFailure {
@@ -16,6 +17,7 @@ public enum MeError: AuthenticatingServerFailure {
   case processedByServer
   case resendingRequested
   case wrongCredentials
+  case transportError(String)
 
   public var localizedDescription: String {
     switch self {
@@ -25,6 +27,8 @@ public enum MeError: AuthenticatingServerFailure {
         "A resend was requested"
       case .wrongCredentials:
         "Incorrect email or password" // "Неправильное имя пользователя или пароль"
+      case .transportError(let detail):
+        "Transport error: \(detail)"
     }
   }
   //  public var errorDescription: String? {

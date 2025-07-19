@@ -2,80 +2,76 @@
 
 import Foundation
 
-public protocol API {
-  var baseURL: URL { get }
-}
-
-public protocol AccessTokenBaseRequest: ServerBaseRequest {
-  var accessToken: String { get set }
-}
-
-public protocol SearchBoxRequest: AccessTokenBaseRequest {
-
-}
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public protocol URLable {
   static var url: String { get }
 }
 
-public protocol MethodRequest where Self: Codable & URLable {
-  func urlRequest(relativeTo baseURL: URL, withToken token: String?) throws -> URLRequest
-}
-
-public protocol PostRequest: MethodRequest { }
-public protocol GetRequest: MethodRequest { }
-public protocol GetWithIDRequest: MethodRequest {
-  var id: String { get }
-}
+public protocol PostRequest: ServerRequest { }
+public protocol GetRequest: ServerRequest { }
 
 public extension PostRequest {
-  func urlRequest(relativeTo baseURL: URL, withToken token: String? = nil) throws -> URLRequest {
-    var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
-    urlComponents.path = urlComponents.path.appending(Self.url)
+  var headers: [String: String] { ["Content-Type": "application/json" ] }
+
+  var serialized: Data {
+    get throws {
+      try JSONEncoder().encode(self)
+    }
+  }
+
+  func urlRequest() throws -> URLRequest {
+    let urlComponents = urlComponents(url: Self.baseURL)
 
     return try URLRequest(url: urlComponents.url!).with {
       $0.httpMethod = "POST"
       //      let version = "1.0.1"
       //      $0.setValue("MU/\(version) (iOS)", forHTTPHeaderField: "User-Agent")
-      $0.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      $0.httpBody = try JSONEncoder().encode(self)
+
+      for (headerName, headerValue) in headers {
+        $0.setValue(headerValue, forHTTPHeaderField: headerName)
+      }
+
+      $0.httpBody = try serialized
     }
+  }
+}
+
+public extension PostRequest where Self: Authenticated {
+  var headers: [String: String] {
+    get throws { ["Content-Type": "application/json"].merging(try Self.authenticationHeaders) { (h, _) in h } }
   }
 }
 
 public extension GetRequest {
-  func urlRequest(relativeTo baseURL: URL, withToken token: String? = nil) throws -> URLRequest {
-    var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
-    urlComponents.path = urlComponents.path.appending(Self.url)
-
-    //      let query = Book(title: "Winnie the Pooh", releaseYear: 1926)
-
-    //      print("GetRequest query: \(query)")
-
-    urlComponents.query = try QueryEncoder().with {
-      $0.userInfo[.capitalizeName] = true
-    }
-    .encode(self)
-
-    print("GetRequest encoded: \(urlComponents.query!)")
-
-//    print("GetRequest decoded: \(try QueryDecoder().decode(Self.self, from: urlComponents.query!))")
-
-    return URLRequest(url: urlComponents.url!).with {
-      $0.httpMethod = "GET"
+  var serialized: Data {
+    get throws {
+      try QueryEncoder().with {
+        $0.userInfo[.capitalizeName] = true
+      }
+      .encode(self)
     }
   }
-}
 
-public extension GetWithIDRequest {
-  func urlRequest(relativeTo baseURL: URL, withToken token: String? = nil) throws -> URLRequest {
-    var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
-    urlComponents.path = urlComponents.path.appending(Self.url)
-    urlComponents.path = urlComponents.path.appending("/\(id)")
-    urlComponents.query = try QueryEncoder().encode(self)
+  func urlRequest() throws -> URLRequest {
+    var urlComponents = urlComponents(url: Self.baseURL)
+
+    guard let query = String(data: try serialized, encoding: .utf8) else {
+      fatalError()
+    }
+
+    urlComponents.query = query
+//    urlComponents.queryItems?.append(URLQueryItem(name: "Name", value: "Value"))
+//    print("GetRequest encoded: \(urlComponents.query!)")
 
     return URLRequest(url: urlComponents.url!).with {
       $0.httpMethod = "GET"
+
+      for (headerName, headerValue) in headers {
+        $0.setValue(headerValue, forHTTPHeaderField: headerName)
+      }
     }
   }
 }
