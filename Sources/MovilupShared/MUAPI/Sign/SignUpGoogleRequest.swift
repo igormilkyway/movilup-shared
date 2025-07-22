@@ -1,11 +1,15 @@
 //  Created by Igor Sorokin
 
-public struct SignUpGoogleRequest: MURequest, TokenInBodyAuthenticated {
+public protocol GoogleServerRequest: MURequest, TokenInBodyAuthenticated { }
+
+public struct SignUpGoogleRequest: GoogleServerRequest {
   public typealias Success = SignUpResponse
 //  public typealias Failure = SignUpError
 
   public static let url = "signup-google"
 //  public static let role: UserRole? = .customer
+
+  @AssertNotNilOrEmpry var accessToken = Self.accessToken
 
   public init() { }
 }

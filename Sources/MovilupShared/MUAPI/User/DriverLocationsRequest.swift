@@ -13,9 +13,9 @@ public struct DriverLocationsRequest: MURequest, TokenAuthenticated {
 public struct DriverLocation: ServerResponse {
   public let driverID: UUID
   public let driverName: String
-  public let coordinate: CoordinateDTO
+  public let coordinate: Coordinate
 
-  public init(driverID: UUID, driverName: String, coordinate: CoordinateDTO) {
+  public init(driverID: UUID, driverName: String, coordinate: Coordinate) {
     self.driverID = driverID
     self.driverName = driverName
     self.coordinate = coordinate

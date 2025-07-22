@@ -19,23 +19,23 @@ public protocol ServerRequest: Encodable, Sendable {
   func urlComponents(url: URL) -> URLComponents
   func urlRequest() throws -> URLRequest
 
-  func send() async throws -> Response
+  func send(verbose: Bool) async throws -> Response
 }
 
-extension ServerRequest {
-  public var path: String { "" }
+public extension ServerRequest {
+  var path: String { "" }
 
-  public var headers: [String: String] { [:] }
+  var headers: [String: String] { [:] }
 
-  public func urlComponents(url baseURL: URL) -> URLComponents {
+  func urlComponents(url baseURL: URL) -> URLComponents {
     URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!.with {
       $0.path.append(Self.url)
       $0.path.append(path)
     }
   }
   
-  public func send() async throws -> Response {
-    let (statusCode, responseData) = try await urlRequest().send()
+  func send(verbose: Bool = false) async throws -> Response {
+    let (statusCode, responseData) = try await urlRequest().send(verbose: verbose)
 
     guard statusCode == 200 else {
       throw SendError.badStatusCode(statusCode)
@@ -54,21 +54,21 @@ public protocol ServerThrowingRequest: ServerRequest {
   var apiVersion: String { get } // SemVer
 }
 
-extension ServerThrowingRequest {
-  public typealias Response = Result<Success, Failure>
-  public typealias Success = EmptyServerResponse
-  public typealias Failure = MeError
+public extension ServerThrowingRequest {
+  typealias Response = Result<Success, Failure>
+  typealias Success = EmptyServerResponse
+  typealias Failure = MeError
 
-  public static var apiVersion: String {
+  static var apiVersion: String {
     "1.0.0"
   }
 
-  public var apiVersion: String {
+  var apiVersion: String {
     Self.apiVersion
   }
 
-  public func send() async throws -> Self.Success {
-    let (statusCode, responseData) = try await urlRequest().send()
+  func send(verbose: Bool = false) async throws -> Self.Success {
+    let (statusCode, responseData) = try await urlRequest().send(verbose: verbose)
 
     guard statusCode == 200 else {
       throw SendError.badStatusCode(statusCode)
@@ -107,10 +107,12 @@ extension Result: Codable where Success: ServerResponse, Failure: ServerFailure 
   }
 }
 
-extension String: @retroactive Error { }
+public extension URLRequest {
+  func send(verbose: Bool) async throws -> (Int, Data) {
+    if verbose {
+      print(url!)
+    }
 
-extension URLRequest {
-  public func send() async throws -> (Int, Data) {
     let (responseData, urlResponse) = try await URLSession.shared.data(for: self)
 
     guard let httpResponse = urlResponse as? HTTPURLResponse else {
@@ -121,8 +123,16 @@ extension URLRequest {
   }
 }
 
-public enum SendError: Error {
+//extension String: @retroactive LocalizedError {
+//  public var errorDescription: String? { self }
+//}
+
+public enum SendError: LocalizedError {
   case noCredentials
-  case invalidResponse(Error)
+  case invalidResponse(String)
   case badStatusCode(Int)
+  case other(String)
+
+//  var localizedDescription: String? { "self" }
+  public var errorDescription: String? { "\(self)" }
 }

@@ -56,17 +56,51 @@ public extension TokenAuthenticated {
   }
 }
 
-public protocol TokenInBodyAuthenticated: TokenAuthenticated { }
+public protocol TokenInBodyAuthenticated: TokenAuthenticated {
+//  var accessToken: String? { get set }
+}
 
 public extension TokenInBodyAuthenticated {
   static var authenticationHeaders: [String: String] { [:] }
+
+//  var _accessToken: AssertNotNilOrEmpry {
+//    AssertNotNilOrEmpry(wrappedValue: nil)
+//  }
+//
+//  var accessToken: String? {
+//    get { _accessToken.wrappedValue }
+//    set { _accessToken.wrappedValue = newValue }
+//  }
 }
 
-enum Authentication {
-  case basic
-  case token
-  case tokenInBody
+@propertyWrapper
+public struct AssertNotNilOrEmpry: Codable, Sendable {
+  private var accessToken: String?
+
+  public var wrappedValue: String? {
+    get {
+      assert(accessToken != nil && !accessToken!.isEmpty, "accessToken is nil or empty")
+
+      return accessToken
+    }
+
+    set {
+      accessToken = newValue
+    }
+  }
+
+  public init(wrappedValue accessToken: String?) {
+    assert(accessToken != nil && !accessToken!.isEmpty, "accessToken is nil or empty")
+
+    self.accessToken = accessToken
+  }
 }
+
+//enum Authentication {
+//  case basic
+//  case token
+//  case tokenInBody
+//}
 
 //  //    let configuration = URLSessionConfiguration.default.with {
 //  //      $0.httpAdditionalHeaders = [

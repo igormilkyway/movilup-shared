@@ -29,11 +29,11 @@ extension NSCopying {
   }
 }
 
-protocol With {
+public protocol With {
   func with(_ closure: (Self) -> Void) -> Self
 }
 
-extension With {
+public extension With {
   func with(_ closure: (Self) -> Void) -> Self {
     closure(self)
     return self

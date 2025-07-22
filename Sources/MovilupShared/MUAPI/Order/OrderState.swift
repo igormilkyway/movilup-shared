@@ -13,7 +13,7 @@ public enum OrderState: String, Codable, Sendable {
 }
 
 extension OrderState {
-  public var intValue: Int {
+  var intValue: Int {
     switch self {
       case .created:
         0

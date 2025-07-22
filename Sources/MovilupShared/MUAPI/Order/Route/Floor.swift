@@ -7,7 +7,7 @@ extension LocationDTO {
     case number(Int)
     case higher
 
-    public var cost: Int {
+    var cost: Int {
       switch self {
         case .number(let number):
           if number > 3 {

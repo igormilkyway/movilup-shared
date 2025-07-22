@@ -9,9 +9,9 @@ public struct UpdateOrderRequest: MURequest, TokenAuthenticated {
 
   public let state: OrderState
   public let orderID: UUID?
-  public let coordinate: CoordinateDTO?
+  public let coordinate: Coordinate?
 
-  public init(to state: OrderState, orderID: UUID?, coordinate: CoordinateDTO?) {
+  public init(to state: OrderState, orderID: UUID?, coordinate: Coordinate?) {
     self.state = state
     self.orderID = orderID
     self.coordinate = coordinate

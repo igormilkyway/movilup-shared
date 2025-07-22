@@ -48,10 +48,12 @@ public extension PostRequest where Self: Authenticated {
 public extension GetRequest {
   var serialized: Data {
     get throws {
-      try QueryEncoder().with {
+      let string = try QueryEncoder().with {
         $0.userInfo[.capitalizeName] = true
       }
       .encode(self)
+
+      return Data(string.utf8)
     }
   }
 

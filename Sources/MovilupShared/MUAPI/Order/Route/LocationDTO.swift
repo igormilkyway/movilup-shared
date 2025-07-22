@@ -7,7 +7,7 @@ public struct LocationDTO: DTOType, Equatable {
 
   public var id: UUID?
   public var address: String?
-  public var coordinate: CoordinateDTO
+  public var coordinate: Coordinate
   public var floor: Floor
   public var elevator: Elevator
   public var requiresCrane: Bool
@@ -15,7 +15,7 @@ public struct LocationDTO: DTOType, Equatable {
 
   public init(id: UUID? = nil,
               address: String?,
-              coordinate: CoordinateDTO,
+              coordinate: Coordinate,
               floor: Floor,
               elevator: Elevator,
               requiresCrane: Bool,
