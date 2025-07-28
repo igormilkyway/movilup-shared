@@ -26,7 +26,7 @@ extension Coordinate: CustomStringConvertible {
 }
 
 public extension Coordinate {
-  public init(from decoder: any Decoder) throws {
+  init(from decoder: any Decoder) throws {
     do {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       let longitude = try container.decode(Double.self, forKey: .longitude)
@@ -54,7 +54,7 @@ public extension Coordinate {
 //  }
 
 @propertyWrapper
-public struct AsUnkeyed<Value>: Codable, Sendable where Value: Codable, Value: Equatable {
+public struct AsUnkeyed<Value>: Codable, Sendable where Value: Codable, Value: Equatable, Value: Sendable {
   private var value: Value
   private var order = 0
   private var separator = ","
@@ -104,5 +104,14 @@ public struct AsUnkeyed<Value>: Codable, Sendable where Value: Codable, Value: E
 extension AsUnkeyed: Equatable {
   public static func == (lhs: AsUnkeyed<Value>, rhs: AsUnkeyed<Value>) -> Bool {
     lhs.value == rhs.value
+  }
+}
+
+extension Array where Element == Coordinate {
+  var serialized: String {
+    map {
+      "\($0.longitude),\($0.latitude)"
+    }
+    .joined(separator: ";")
   }
 }

@@ -38,15 +38,15 @@ public extension BasicAuthenticated {
 }
 
 public protocol TokenAuthenticated: Authenticated {
-  static var accessToken: String? { get }
+  static var accessToken: String { get }
 }
 
 public extension TokenAuthenticated {
-  static var accessToken: String? { nil }
+  static var accessToken: String { "" }
 
   static var authenticationHeaders: [String: String] {
     get throws {
-      if let accessToken {
+      if !accessToken.isEmpty {
         ["Authorization": "Bearer \(accessToken)"]
       }
       else {
@@ -57,7 +57,7 @@ public extension TokenAuthenticated {
 }
 
 public protocol TokenInBodyAuthenticated: TokenAuthenticated {
-//  var accessToken: String? { get set }
+  var accessToken: String { get }
 }
 
 public extension TokenInBodyAuthenticated {
@@ -74,23 +74,23 @@ public extension TokenInBodyAuthenticated {
 }
 
 @propertyWrapper
-public struct AssertNotNilOrEmpry: Codable, Sendable {
-  private var accessToken: String?
+public struct AssertNotEmpry: Codable, Sendable {
+  private var accessToken: String
 
-  public var wrappedValue: String? {
+  public var wrappedValue: String {
     get {
-      assert(accessToken != nil && !accessToken!.isEmpty, "accessToken is nil or empty")
-
-      return accessToken
+      accessToken
     }
 
     set {
+      assert(!newValue.isEmpty, "accessToken is empty")
+
       accessToken = newValue
     }
   }
 
-  public init(wrappedValue accessToken: String?) {
-    assert(accessToken != nil && !accessToken!.isEmpty, "accessToken is nil or empty")
+  public init(wrappedValue accessToken: String) {
+    assert(!accessToken.isEmpty, "accessToken is empty")
 
     self.accessToken = accessToken
   }

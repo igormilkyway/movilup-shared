@@ -12,7 +12,7 @@ public enum OrderState: String, Codable, Sendable {
   case closed
 }
 
-extension OrderState {
+public extension OrderState {
   var intValue: Int {
     switch self {
       case .created:
@@ -36,7 +36,7 @@ extension OrderState {
     }
   }
 
-  public init?(intValue: Int) {
+  init?(intValue: Int) {
     switch intValue {
       case 0:
         self = .created

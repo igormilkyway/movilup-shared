@@ -45,7 +45,7 @@ public extension ServerRequest {
   }
 }
 
-public protocol ServerThrowingRequest: ServerRequest {
+public protocol ServerThrowingRequest: ServerRequest, Codable {
   associatedtype Success: ServerResponse
   associatedtype Failure: ServerFailure
 

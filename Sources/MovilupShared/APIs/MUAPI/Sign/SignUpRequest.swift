@@ -7,7 +7,7 @@ public enum SignType: Codable, Sendable {
 
 public struct SignUpRequest: MURequest {
   public typealias Success = SignUpResponse
-//  public typealias Failure = SignUpError
+  public typealias Failure = SignUpError
 
   public static let url = "signup"
 

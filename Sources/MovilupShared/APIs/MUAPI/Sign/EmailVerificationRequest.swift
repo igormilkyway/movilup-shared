@@ -2,7 +2,7 @@
 
 public struct EmailVerificationRequest: MURequest {
   public typealias Success = MeResponse
-//  public typealias Failure = EmailVerificationRequestError
+  public typealias Failure = EmailVerificationRequestError
 
   public static let url = "email-verification"
 

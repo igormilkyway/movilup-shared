@@ -7,7 +7,7 @@ public struct SignInGoogleRequest: GoogleServerRequest {
   public static let url = "signin-google"
 //  public static let role: UserRole? = nil
 
-  @AssertNotNilOrEmpry var accessToken = Self.accessToken
+  @AssertNotEmpry public var accessToken: String = Self.accessToken
 
   public init() { }
 }

@@ -36,7 +36,7 @@ final class QueryValueKeyedEncodingContainer<Key: CodingKey>: KeyedEncodingConta
       separator = unkeyedValue.projectedValue.separator
       _storage[unkeyedValue.projectedValue.order] = try QueryValueEncoder().encode(unkeyedValue.wrappedValue)
     } else {
-      let (stringValue, separator) = if let value = value as? LosslessStringConvertible {
+      let (stringValue, _) = if let value = value as? LosslessStringConvertible {
         (String(value), ",")
       } else {
         (try QueryValueEncoder().encode(value), ";")

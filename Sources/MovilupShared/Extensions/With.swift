@@ -6,10 +6,8 @@ import Foundation
 import FoundationNetworking
 #endif
 
-//import CoreGraphics
-//import SwiftUI
-
-extension NSObjectProtocol {
+public extension NSObjectProtocol {
+//extension NSObjectProtocol {
   func with(_ closure: (Self) -> Void) -> Self {
     closure(self)
     return self
@@ -23,28 +21,28 @@ extension NSObjectProtocol {
 //  }
 //}
 
-extension NSCopying {
-  var copy: Self {
-    copy() as! Self
-  }
-}
+//extension NSCopying {
+//  var copy: Self {
+//    copy() as! Self
+//  }
+//}
 
 public protocol With {
   func with(_ closure: (Self) -> Void) -> Self
 }
 
-public extension With {
+public extension With where Self: AnyObject {
   func with(_ closure: (Self) -> Void) -> Self {
     closure(self)
     return self
   }
 }
 
-protocol ValueWith {
+public protocol ValueWith {
   func with(_ closure: (inout Self) -> Void) -> Self
 }
 
-extension ValueWith {
+public extension ValueWith {
   func with(_ closure: (inout Self) -> Void) -> Self {
     var s = self
     closure(&s)
@@ -58,62 +56,29 @@ extension ValueWith {
   }
 }
 
+extension JSONEncoder: With { }
+extension JSONDecoder: With { }
+
 extension Date.FormatStyle: ValueWith {}
-//extension Transaction: ValueWith {}
 extension Calendar: ValueWith {}
 extension Locale: ValueWith {}
 extension CharacterSet: ValueWith {}
 extension URLRequest: ValueWith {}
 extension URLComponents: ValueWith {}
+extension Set: ValueWith {}
 
-//final public class CGSizeClass {
-//  public var width: CGFloat
-//  public var height: CGFloat
-//
-//  public init(cgSize: CGSize) {
-//    width = cgSize.width
-//    height = cgSize.height
-//  }
-//}
-//
-//extension CGSize {
-//  init(cgSizeClass: CGSizeClass) {
-//    self.init(width: cgSizeClass.width, height: cgSizeClass.height)
-//  }
-//
-//  func withCopy(_ closure: (CGSizeClass) -> Void) -> CGSize {
-//    let cgSizeClass = CGSizeClass(cgSize: self)
-//    closure(cgSizeClass)
-//    return CGSize(cgSizeClass: cgSizeClass)
-//  }
-//}
-//
-//public final class CGPointClass {
-//  public var x: CGFloat
-//  public var y: CGFloat
-//
-//  public init(cgPoint: CGPoint) {
-//    x = cgPoint.x
-//    y = cgPoint.y
-//  }
-//}
-//
-//extension CGPoint {
-//  init(cgPointClass: CGPointClass) {
-//    self.init(x: cgPointClass.x, y: cgPointClass.y)
-//  }
-//
-//  func withCopy(_ closure: (CGPointClass) -> Void) -> CGPoint {
-//    let cgPointClass = CGPointClass(cgPoint: self)
-//    closure(cgPointClass)
-//    return CGPoint(cgPointClass: cgPointClass)
-//  }
-//}
-//
-//extension Set {
-//  func withCopy(_ closure: (NSMutableSet) -> Void) -> Set {
-//    let setClass = NSMutableSet(set: self)
-//    closure(setClass)
-//    return setClass as! Set
-//  }
-//}
+extension AsyncSequence {
+  func forEach(_ body: (Element) async throws -> Void) async throws {
+    for try await element in self {
+      try await body(element)
+    }
+  }
+}
+
+extension URLSession {
+  static var stream: URLSession {
+    .init(configuration: URLSessionConfiguration.default.with {
+      $0.timeoutIntervalForRequest = .infinity
+    })
+  }
+}
