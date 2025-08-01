@@ -5,6 +5,7 @@ public struct EmailVerificationRequest: MURequest {
   public typealias Failure = EmailVerificationRequestError
 
   public static let url = "email-verification"
+  public static let roles: Set<UserRole> = .all
 
   public let email: String
   public let code: String

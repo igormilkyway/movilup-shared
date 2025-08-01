@@ -4,7 +4,7 @@ public struct EstimateOrderRequest: MURequest, TokenAuthenticated {
   public typealias Success = OrderDTO
 
   public static let url = "estimate_order"
-  public static let roles: [UserRole] = [.estimator]
+  public static let roles: Set<UserRole> = [.estimator]
 
   public let cargoItems: [CargoItemDTO]
 

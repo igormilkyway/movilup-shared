@@ -6,6 +6,9 @@ public struct DTORequest<DTO: DTOType>: MURequest, TokenAuthenticated {
   public typealias Success = DTO
 
   public static var url: String { DTO.url }
+  public static var roles: Set<UserRole> {
+    DTO.roles
+  }
 
   public let id: UUID
 

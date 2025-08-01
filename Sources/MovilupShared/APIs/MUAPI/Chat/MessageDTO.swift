@@ -11,17 +11,19 @@ public struct MessageDTO: DTOType {
     case incoming
   }
 
-  public let id: UUID?
+  public let id: UUID
   public let date: Date
   public let text: String
   public let direction: Direction
   public let counterparty: UserRole
+  public let orderID: UUID
 
-  public init(id: UUID?, date: Date, text: String, direction: Direction, counterparty: UserRole) {
+  public init(id: UUID, date: Date, text: String, direction: Direction, counterparty: UserRole, orderID: UUID) {
     self.id = id
     self.date = date
     self.text = text
     self.direction = direction
     self.counterparty = counterparty
+    self.orderID = orderID
   }
 }

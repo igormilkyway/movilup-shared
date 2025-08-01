@@ -1,9 +1,13 @@
 //
 
-import Foundation
+import struct Foundation.UUID
 
-public protocol DTOType: ServerResponse {
+public protocol DTOType: ServerResponse, Identifiable, RoleAuthenticated {
   static var url: String { get }
 
-  var id: UUID? { get }
+  var id: UUID { get }
+}
+
+extension DTOType {
+  public static var roles: Set<UserRole> { .all }
 }

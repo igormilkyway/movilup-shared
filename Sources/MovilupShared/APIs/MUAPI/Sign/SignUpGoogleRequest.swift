@@ -1,13 +1,14 @@
 //  Created by Igor Sorokin
 
-public protocol GoogleServerRequest: MURequest, TokenInBodyAuthenticated { }
+public protocol GoogleServerRequest: MURequest { }
 
-public struct SignUpGoogleRequest: GoogleServerRequest {
+public struct SignUpGoogleRequest: GoogleServerRequest, TokenInBodyAuthenticated {
   public typealias Success = SignUpResponse
   public typealias Failure = SignUpError
 
   public static let url = "signup-google"
-//  public static let role: UserRole? = .customer
+  #warning("Remove RoleAuthenticated conformance")
+  public static let roles: Set<UserRole> = .all
 
   @AssertNotEmpry public var accessToken: String = Self.accessToken
 

@@ -6,7 +6,7 @@ public struct UsersRequest: MURequest, TokenAuthenticated {
   public typealias Success = UsersResponse
 
   public static let url = "users"
-  public static let roles: [UserRole] = [.owner, .loader]
+  public static let roles: Set<UserRole> = [.owner]
 
   public let role: UserRole?
 

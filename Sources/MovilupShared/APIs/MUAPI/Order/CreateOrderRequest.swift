@@ -5,11 +5,19 @@ public struct CreateOrderRequest: MURequest, TokenAuthenticated {
   public typealias Failure = MeError
 
   public static let url = "create_order"
-  public static let roles: [UserRole] = [.customer]
+  public static let roles: Set<UserRole> = [.customer, .demoCustomer]
 
   public let order: OrderDTO
 
   public init(order: OrderDTO) {
     self.order = order
   }
+}
+
+import struct Foundation.Date
+
+public struct CreatedOrder {
+  public var arrivedAtDeparturePlannedDate: Date?
+  public var route: RouteDTO
+  public var cargo: CargoDTO
 }

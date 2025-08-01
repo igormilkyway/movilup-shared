@@ -4,6 +4,7 @@ public struct MeRequest: MURequest, TokenAuthenticated {
   public typealias Success = MeResponse
 
   public static let url = "me"
+  public static let roles: Set<UserRole> = .all
 
   public init() {}
 }

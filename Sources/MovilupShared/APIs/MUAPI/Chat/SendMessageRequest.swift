@@ -4,6 +4,7 @@ public struct SendMessageRequest: MURequest, TokenAuthenticated {
   public typealias Success = MessageDTO
 
   public static let url = "send_message"
+  public static let roles: Set<UserRole> = .all
 
   public let message: MessageDTO
 

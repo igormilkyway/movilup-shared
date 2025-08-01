@@ -2,14 +2,12 @@
 
 import Foundation
 
-//public protocol AuthenticatedWithRoles: ServerThrowingRequest where Failure: AuthenticatingServerFailure {
-//  static var roles: [UserRole] { get }
-//}
-//
-//extension AuthenticatingServerRequest {
-//  public static var roles: [UserRole] {
-//    UserRole.allCases
-//  }
+public protocol RoleAuthenticated {
+  static var roles: Set<UserRole> { get }
+}
+
+//public extension RoleAuthenticated {
+//  static var roles: Set<UserRole> { .all }
 //}
 
 public protocol Authenticated where Self: ServerRequest {

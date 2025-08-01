@@ -2,7 +2,7 @@
 
 public struct UpdateDriverNeedsLoadersRequest: MURequest, TokenAuthenticated {
   public static let url = "update-driver-needs-loaders"
-  public static let roles: [UserRole] = [.driver]
+  public static let roles: Set<UserRole> = [.driver]
 
   public let needsLoaders: Bool
 

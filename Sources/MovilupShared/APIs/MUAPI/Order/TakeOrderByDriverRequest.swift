@@ -7,7 +7,7 @@ public struct TakeOrderByDriverRequest: MURequest, TokenAuthenticated {
   public typealias Success = OrderDTO
 
   public static let url = "take_order_by_driver"
-  public static let roles: [UserRole] = [.driver]
+  public static let roles: Set<UserRole> = [.driver]
 
   public let orderID: UUID
   public let coordinate: Coordinate

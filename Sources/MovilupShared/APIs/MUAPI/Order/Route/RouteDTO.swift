@@ -5,12 +5,12 @@ import struct Foundation.UUID
 public struct RouteDTO: DTOType {
   public static let url = "route"
 
-  public var id: UUID?
+  public var id: UUID
   public var from: LocationDTO
   public var to: LocationDTO
   public var fromTo: Distance
 
-  public init(id: UUID?, from: LocationDTO, to: LocationDTO, fromTo: Distance) {
+  public init(id: UUID, from: LocationDTO, to: LocationDTO, fromTo: Distance) {
     self.id = id
     self.from = from
     self.to = to

@@ -6,6 +6,7 @@ public struct UpdateOrderRequest: MURequest, TokenAuthenticated {
   public typealias Success = OrderDTO
 
   public static let url = "update_order"
+  public static let roles: Set<UserRole> = [.customer, .demoCustomer, .driver, .estimator]
 
   public let state: OrderState
   public let orderID: UUID?

@@ -67,7 +67,7 @@ extension URLRequest: ValueWith {}
 extension URLComponents: ValueWith {}
 extension Set: ValueWith {}
 
-extension AsyncSequence {
+public extension AsyncSequence {
   func forEach(_ body: (Element) async throws -> Void) async throws {
     for try await element in self {
       try await body(element)
@@ -75,10 +75,22 @@ extension AsyncSequence {
   }
 }
 
-extension URLSession {
+public extension URLSession {
   static var stream: URLSession {
     .init(configuration: URLSessionConfiguration.default.with {
       $0.timeoutIntervalForRequest = .infinity
     })
+  }
+}
+
+public extension UUID {
+  static var mock: UUID {
+    .init()
+  }
+}
+
+public extension Coordinate {
+  static var mock: Coordinate {
+    .init(latitude: 0, longitude: 0)
   }
 }

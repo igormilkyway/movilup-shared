@@ -6,6 +6,7 @@ public struct DriverLocationsRequest: MURequest, TokenAuthenticated {
   public typealias Success = [DriverLocation]
 
   public static let url = "driver-locations"
+  public static let roles: Set<UserRole> = [.customer, .demoCustomer, .owner]
 
   public init() {}
 }

@@ -7,7 +7,8 @@ public struct ImageRequest: MURequest, TokenAuthenticated  {
   public typealias Success = ImageResponse
 
   public static let url = "image"
-  
+  public static let roles: Set<UserRole> = .all.subtracting([.loader])
+
   public let imageUUID: UUID
 
   public init(imageUUID: UUID) {

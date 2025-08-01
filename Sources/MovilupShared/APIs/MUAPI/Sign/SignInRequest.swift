@@ -8,7 +8,7 @@ public struct SignInRequest: MURequest, BasicAuthenticated {
   public static var password: String?
 
   public static let url = "signin"
-//  public static let authentication: ServerRequestAuthentication = .basic
+  public static let roles: Set<UserRole> = .all.subtracting([.demoEstimator, .demoDriver])
 
   public init(email: String, password: String) {
     Self.email = email

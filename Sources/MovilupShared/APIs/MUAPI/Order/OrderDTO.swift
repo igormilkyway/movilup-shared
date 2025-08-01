@@ -3,12 +3,12 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
-public struct TakenByEstimator: Codable {
+public struct TakenByEstimator: ServerResponse {
   public let date: Date
   public var estimatedDate: Date
 }
 
-public struct TakenByDriver: Codable {
+public struct TakenByDriver: ServerResponse {
   public let date: Date
   public var coordinate: Coordinate
   public var distance: Distance
@@ -17,7 +17,7 @@ public struct TakenByDriver: Codable {
 public struct OrderDTO: DTOType {
   public static let url = "order"
 
-  public let id: UUID?
+  public let id: UUID
   public var arrivedAtDeparturePlannedDate: Date?
   public let createdDate: Date
 
@@ -37,7 +37,7 @@ public struct OrderDTO: DTOType {
   public var route: RouteDTO
   public var cargo: CargoDTO
 
-  public init(id: UUID?,
+  public init(id: UUID,
               arrivedAtDeparturePlannedDate: Date?,
               createdDate: Date,
               takenByEstimator: TakenByEstimator?,

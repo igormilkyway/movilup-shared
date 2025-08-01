@@ -10,6 +10,7 @@ public struct SignUpRequest: MURequest {
   public typealias Failure = SignUpError
 
   public static let url = "signup"
+  public static let roles: Set<UserRole> = .all
 
   public let type: SignType
   public let email: String
