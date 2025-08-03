@@ -5,7 +5,7 @@ public struct SignInGoogleRequest: GoogleServerRequest, TokenAuthenticated {
   public typealias Failure = MeError
 
   public static let url = "signin-google"
-  public static let roles: Set<UserRole> = .all
+  public static let roles: Set<UserRole> = .all.subtracting([.demoEstimator, .demoDriver])
 
   public init() { }
 }
