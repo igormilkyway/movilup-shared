@@ -2,11 +2,11 @@
 
 public typealias OrdersResponse = [OrderDTO]
 
-public struct OrdersRequest: MURequest, TokenAuthenticated {
+public struct OrdersRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = OrdersResponse
 
-  public static let url = "orders"
-  public static let roles: Set<UserRole> = [.driver]
+  public static var url: String { "orders" }
+  public static var roles: Set<UserRole> { [.driver] }
 
   public let state: OrderState?
 

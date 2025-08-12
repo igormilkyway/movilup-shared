@@ -1,11 +1,14 @@
 //
 
 import Foundation
+
+var sharedSessionToken = UUID()
+
 /// ///https://api.mapbox.com/search/searchbox/v1/suggest?q=Malkhei%2520Israel%2520&access_token=&session_token=3000C049-1992-4512-A5F5-C0F4BF691FBC&language=en&limit=10&bbox=33.72080106788262%252C31.17819071553516%252C35.839198932117384%252C32.98180928446484&country=US&proximity=34.78%252C32.08
 
 /// https://api.mapbox.com/search/searchbox/v1/suggest?q={search_text}
 /// $curl  "https://api.mapbox.com/search/searchbox/v1/suggest?q=Michigan%20Stadium&language=en&limit=1&session_token=[GENERATED-UUID]&proximity=-83.748708,42.265837&country=US&access_token=pk.eyJ1IjoiaWdvcm1pbGt5d2F5IiwiYSI6ImNsemhzemxhczA4YWoybXF4b3E5bnA4bDcifQ.KC7iC8G9iC9IJuftReWbZA"
-public struct SearchBoxSuggestRequest: SearchBoxRequest {
+public struct SearchBoxSuggestRequest<Authenticator: TokenAuthenticatorProtocol>: SearchBoxRequest {
   public init(language: String? = nil, text: String, boundingBox: BoundingBox, countries: Set<String>, eta: ETACalculation?, proximity: Coordinate?) {
     self.language = language
     self.text = text
@@ -17,25 +20,13 @@ public struct SearchBoxSuggestRequest: SearchBoxRequest {
   
   public typealias Response = SearchBoxSuggestResponse
 
-  public static let url = "suggest"
-
-//  @MainActor
-  nonisolated(unsafe) static var sessionToken = UUID()
-
-//  static var sessionToken: UUID {
-//    if let _sessionToken {
-//      return _sessionToken
-//    } else {
-//      _sessionToken = UUID()
-//      return _sessionToken!
-//    }
-//  }
+  public static var url: String { "suggest" }
 
   /// A customer-provided session token value, which groups a series of requests together for billing purposes. UUIDv4 is recommended.
   //  @MainActor
-  let sessionToken = Self.sessionToken
+  let sessionToken = sharedSessionToken
 
-  @AssertNotEmpry public var accessToken: String = Self.accessToken
+//  @AssertNotEmpry public var accessToken: String = Self.accessToken
 
   /// The ISO language code to be returned. If not provided, the default is English.
   /// Allows you to specify the language in which you would like to search.
@@ -86,7 +77,7 @@ public struct SearchBoxSuggestRequest: SearchBoxRequest {
   let proximity: Coordinate?
 
   enum CodingKeys: String, CodingKey {
-    case accessToken = "access_token"
+//    case accessToken = "access_token"
     case sessionToken = "session_token"
 
     case text = "q"
@@ -141,7 +132,7 @@ public extension SearchBoxSuggestRequest {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     try container.encodeIfPresent(text, forKey: .text)
-    try container.encodeIfPresent(accessToken, forKey: .accessToken)
+//    try container.encodeIfPresent(accessToken, forKey: .accessToken)
     try container.encodeIfPresent(sessionToken, forKey: .sessionToken)
     try container.encodeIfPresent(language, forKey: .language)
     try container.encodeIfPresent(limit, forKey: .limit)

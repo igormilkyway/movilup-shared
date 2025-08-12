@@ -6,36 +6,55 @@ import Foundation
 import FoundationNetworking
 #endif
 
-public protocol ServerRequest: Encodable, Sendable {
+public protocol ServerRequest<API>: Encodable, Sendable {
+  associatedtype API: APIProtocol // = DefaultAPI
   associatedtype Response: ServerResponse
 
-  static var baseURL: URL { get }
   static var url: String { get }
-  
-  var path: String { get }
-  var serialized: Data { get throws }
-  var headers: [String: String] { get }
+  static var method: String? { get }
 
-  func urlComponents(url: URL) -> URLComponents
-  func urlRequest() throws -> URLRequest
+  var path: String { get }
+  var query: String? { get throws }
+  var body: Data? { get throws }
+  var headers: [String: String] { get }
 
   func send(verbose: Bool) async throws -> Response
 }
 
 public extension ServerRequest {
   var path: String { "" }
-
   var headers: [String: String] { [:] }
 
-  func urlComponents(url baseURL: URL) -> URLComponents {
-    URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!.with {
-      $0.path.append(Self.url)
-      $0.path.append(path)
+  var urlRequest: URLRequest {
+    get throws {
+      guard let url = (try URLComponents(url: API.baseURL, resolvingAgainstBaseURL: false)!.with {
+        $0.path.append(Self.url)
+        $0.path.append(path)
+        $0.query = try query
+
+        //    urlComponents.queryItems?.append(URLQueryItem(name: "Name", value: "Value"))
+        //    print("GetRequest encoded: \(urlComponents.query!)")
+      })
+        .url else {
+        throw SendError.other("Wrong URL")
+      }
+
+      return try URLRequest(url: url).with {
+        $0.httpMethod = Self.method
+        //      let version = "1.0.1"
+        //      $0.setValue("MU/\(version) (iOS)", forHTTPHeaderField: "User-Agent")
+
+        for (headerName, headerValue) in headers {
+          $0.setValue(headerValue, forHTTPHeaderField: headerName)
+        }
+
+        $0.httpBody = try body
+      }
     }
   }
-  
+
   func send(verbose: Bool = false) async throws -> Response {
-    let (statusCode, responseData) = try await urlRequest().send(verbose: verbose)
+    let (statusCode, responseData) = try await urlRequest.send(verbose: verbose)
 
     guard statusCode == 200 else {
       throw SendError.badStatusCode(statusCode)
@@ -46,29 +65,15 @@ public extension ServerRequest {
 }
 
 public protocol ServerThrowingRequest: ServerRequest, Codable {
-  associatedtype Success: ServerResponse
-  associatedtype Failure: ServerFailure
-
-  static var apiVersion: String { get } // SemVer
-
-  var apiVersion: String { get } // SemVer
+  associatedtype Success: ServerResponse = EmptyServerResponse
+  associatedtype Failure: ServerFailure = MeError
 }
 
 public extension ServerThrowingRequest {
   typealias Response = Result<Success, Failure>
-  typealias Success = EmptyServerResponse
-  typealias Failure = MeError
-
-  static var apiVersion: String {
-    "1.0.0"
-  }
-
-  var apiVersion: String {
-    Self.apiVersion
-  }
 
   func send(verbose: Bool = false) async throws -> Self.Success {
-    let (statusCode, responseData) = try await urlRequest().send(verbose: verbose)
+    let (statusCode, responseData) = try await urlRequest.send(verbose: verbose)
 
     guard statusCode == 200 else {
       throw SendError.badStatusCode(statusCode)

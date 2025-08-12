@@ -5,12 +5,12 @@ extension CodingUserInfoKey {
 }
 
 /// https://api.mapbox.com/directions-matrix/v1/{profile}/{coordinates}
-struct MatrixRetrieveRequest: MatrixRequest {
+struct MatrixRetrieveRequest<Authenticator: TokenAuthenticatorProtocol>: MatrixRequest {
   typealias Response = MatrixRetrieveResponse
 
-  static let url = "mapbox"
+  static var url: String { "mapbox" }
 
-  @AssertNotEmpry public var accessToken: String = Self.accessToken
+//  @AssertNotEmpry public var accessToken: String = Self.accessToken
 
   var path: String {
     "/\(profile)/\(coordinates)"
@@ -50,8 +50,6 @@ struct MatrixRetrieveRequest: MatrixRequest {
   let fallbackSpeed: Int = 50
 
   enum CodingKeys: String, CodingKey {
-    case accessToken = "access_token"
-
     case annotations
     case approaches
     case sources

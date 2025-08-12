@@ -1,8 +1,6 @@
 //  Created by Igor Sorokin
 
-public protocol ServerResponse: Codable, Sendable {
-
-}
+public protocol ServerResponse: Codable, Sendable { }
 
 extension Array: ServerResponse where Element: ServerResponse {}
 

@@ -48,7 +48,7 @@ struct MatrixRetrieveResponse: ServerResponse {
 
 extension MatrixRetrieveRequest {
   func send(verbose: Bool = false) async throws -> Response {
-    let (statusCode, responseData) = try await urlRequest().send(verbose: verbose)
+    let (statusCode, responseData) = try await urlRequest.send(verbose: verbose)
 
     guard statusCode < 500 else {
       throw SendError.badStatusCode(statusCode)

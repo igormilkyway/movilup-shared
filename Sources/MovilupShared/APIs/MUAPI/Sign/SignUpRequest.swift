@@ -5,12 +5,12 @@ public enum SignType: Codable, Sendable {
   case passkey
 }
 
-public struct SignUpRequest: MURequest {
+public struct SignUpRequest<API: APIProtocol>: MURequest {
   public typealias Success = SignUpResponse
   public typealias Failure = SignUpError
-
-  public static let url = "signup"
-  public static let roles: Set<UserRole> = .all
+  
+  public static var url: String { "signup" }
+  public static var roles: Set<UserRole> { .all }
 
   public let type: SignType
   public let email: String

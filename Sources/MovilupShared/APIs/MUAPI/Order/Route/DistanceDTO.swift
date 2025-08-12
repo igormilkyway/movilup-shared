@@ -35,7 +35,7 @@ public struct Distance: Codable, Sendable, Equatable {
 }
 
 public extension Distance {
-  init(from: Coordinate, to: Coordinate, verbose: Bool = false) async throws {
+  init<TokenAuthenticator: TokenAuthenticatorProtocol>(authenticator: TokenAuthenticator.Type, from: Coordinate, to: Coordinate, verbose: Bool = false) async throws {
     guard from != to else {
       //    assert(from != to, "from != to")
       print("from != to")
@@ -43,7 +43,7 @@ public extension Distance {
       return
     }
 
-    let response = try await MatrixRetrieveRequest(
+    let response = try await MatrixRetrieveRequest<TokenAuthenticator>(
       profile: .driving,
       coordinates: [from, to].serialized,
       annotations: "duration,distance",

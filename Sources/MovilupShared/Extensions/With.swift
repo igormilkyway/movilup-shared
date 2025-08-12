@@ -27,11 +27,11 @@ public extension NSObjectProtocol {
 //  }
 //}
 
-public protocol With {
+public protocol With: AnyObject {
   func with(_ closure: (Self) -> Void) -> Self
 }
 
-public extension With where Self: AnyObject {
+public extension With { //} where Self: AnyObject {
   func with(_ closure: (Self) -> Void) -> Self {
     closure(self)
     return self

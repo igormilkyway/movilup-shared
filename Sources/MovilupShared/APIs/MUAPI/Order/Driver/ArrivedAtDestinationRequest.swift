@@ -1,10 +1,10 @@
 //
 
-public struct ArrivedAtDestinationRequest: MURequest, TokenAuthenticated {
+public struct ArrivedAtDestinationRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = OrderDTO
 
-  public static let url = "arrived_at_destination"
-  public static let roles: Set<UserRole> = [.driver, .demoDriver]
+  public static var url: String { "arrived_at_destination" }
+  public static var roles: Set<UserRole> { [.driver, .demoDriver] }
 
   public init() {}
 }

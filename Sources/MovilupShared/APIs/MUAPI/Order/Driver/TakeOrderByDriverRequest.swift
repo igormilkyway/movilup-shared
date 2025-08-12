@@ -3,11 +3,11 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
-public struct TakeOrderByDriverRequest: MURequest, TokenAuthenticated {
+public struct TakeOrderByDriverRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = OrderDTO
 
-  public static let url = "take_order_by_driver"
-  public static let roles: Set<UserRole> = [.driver]
+  public static var url: String { "take_order_by_driver" }
+  public static var roles: Set<UserRole> { [.driver] }
 
   public let orderID: UUID
   public let coordinate: Coordinate

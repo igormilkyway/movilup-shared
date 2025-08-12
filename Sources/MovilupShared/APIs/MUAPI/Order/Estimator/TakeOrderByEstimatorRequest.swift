@@ -3,11 +3,11 @@
 import struct Foundation.UUID
 import struct Foundation.Date
 
-public struct TakeOrderByEstimatorRequest: MURequest, TokenAuthenticated {
+public struct TakeOrderByEstimatorRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = OrderDTO
 
-  public static let url = "take_order_by_estimator"
-  public static let roles: Set<UserRole> = [.estimator]
+  public static var url: String { "take_order_by_estimator" }
+  public static var roles: Set<UserRole> { [.estimator] }
 
   public let orderID: UUID
 

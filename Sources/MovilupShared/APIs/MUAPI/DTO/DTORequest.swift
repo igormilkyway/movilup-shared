@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct DTORequest<DTO: DTOType>: MURequest, TokenAuthenticated {
+public struct DTORequest<DTO: DTOType, API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = DTO
 
   public static var url: String { DTO.url }

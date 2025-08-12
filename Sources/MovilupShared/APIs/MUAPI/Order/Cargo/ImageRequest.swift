@@ -3,11 +3,11 @@
 import struct Foundation.UUID
 import struct Foundation.Data
 
-public struct ImageRequest: MURequest, TokenAuthenticated  {
+public struct ImageRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest  {
   public typealias Success = ImageResponse
 
-  public static let url = "image"
-  public static let roles: Set<UserRole> = .all.subtracting([.loader])
+  public static var url: String { "image" }
+  public static var roles: Set<UserRole> { .all.subtracting([.loader]) }
 
   public let imageUUID: UUID
 

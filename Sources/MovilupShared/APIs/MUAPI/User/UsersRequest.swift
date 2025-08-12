@@ -2,11 +2,11 @@
 
 public typealias UsersResponse = [UserDTO]
 
-public struct UsersRequest: MURequest, TokenAuthenticated {
+public struct UsersRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = UsersResponse
 
-  public static let url = "users"
-  public static let roles: Set<UserRole> = [.owner]
+  public static var url: String { "users" }
+  public static var roles: Set<UserRole> { [.owner] }
 
   public let role: UserRole?
 

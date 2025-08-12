@@ -2,10 +2,8 @@
 
 import Foundation
 
-public protocol MatrixRequest: MapboxRequest { }
+public protocol MatrixRequest: MapboxRequest where API == MatrixAPI { }
 
-public extension MatrixRequest {
-  static var baseURL: URL {
-    URL(string: "https://api.mapbox.com/directions-matrix/v1/")!
-  }
+public struct MatrixAPI: APIProtocol {
+  public static var baseURL: URL { .init(string: "https://api.mapbox.com/directions-matrix/v1/")! }
 }

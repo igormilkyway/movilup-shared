@@ -1,10 +1,10 @@
 //  Created by Igor Sorokin
 
-public struct MeRequest: MURequest, TokenAuthenticated {
+public struct MeRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = MeResponse
 
-  public static let url = "me"
-  public static let roles: Set<UserRole> = .all
+  public static var url: String { "me" }
+  public static var roles: Set<UserRole> { .all }
 
   public init() {}
 }

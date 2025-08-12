@@ -1,3 +1,3 @@
 //
 
-public protocol MapboxRequest: ServerRequest, GetRequest, TokenInBodyAuthenticated { }
+public protocol MapboxRequest: GetRequest, TokenBodyAuthenticatedRequest { }

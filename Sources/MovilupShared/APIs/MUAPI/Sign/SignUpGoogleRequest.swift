@@ -2,15 +2,15 @@
 
 public protocol GoogleServerRequest: MURequest { }
 
-public struct SignUpGoogleRequest: GoogleServerRequest, TokenInBodyAuthenticated {
+public struct SignUpGoogleRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: GoogleServerRequest, TokenBodyAuthenticatedRequest {
   public typealias Success = SignUpResponse
   public typealias Failure = SignUpError
 
-  public static let url = "signup-google"
-  #warning("Remove RoleAuthenticated conformance")
-  public static let roles: Set<UserRole> = .all
+  public static var url: String { "signup-google" }
+#warning("Remove RoleAuthenticated conformance")
+  public static var roles: Set<UserRole> { .all }
 
-  @AssertNotEmpry public var accessToken: String = Self.accessToken
+//  @AssertNotEmpry public var accessToken: String = Self.accessToken
 
   public init() { }
 }

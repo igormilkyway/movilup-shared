@@ -2,7 +2,7 @@
 
 /// reverse?longitude={longitude}&latitude={latitude}
 /// curl "https://api.mapbox.com/search/searchbox/v1/reverse?longitude=-118.471383&latitude=34.023653&language=de&access_token=YOUR_MAPBOX_ACCESS_TOKEN"
-public struct SearchBoxReverseRequest: SearchBoxRequest, Coordinated {
+public struct SearchBoxReverseRequest<Authenticator: TokenAuthenticatorProtocol>: SearchBoxRequest, Coordinated {
   public init(coordinate: Coordinate, language: String?, countries: Set<String>?) {
     self.latitude = coordinate.latitude
     self.longitude = coordinate.longitude
@@ -13,9 +13,9 @@ public struct SearchBoxReverseRequest: SearchBoxRequest, Coordinated {
   public typealias Response = SearchBoxReverseResponse
   public typealias SearchBoxReverseResponse = SearchBoxRetrieveResponse
 
-  public static let url = "reverse"
+  public static var url: String { "reverse" }
 
-  @AssertNotEmpry public var accessToken: String = Self.accessToken
+//  @AssertNotEmpry public var accessToken: String = SearchBoxReverseRequest.accessToken
 
   var latitude: Double
   var longitude: Double
@@ -46,7 +46,7 @@ public struct SearchBoxReverseRequest: SearchBoxRequest, Coordinated {
   ])
   
   enum CodingKeys: String, CodingKey {
-    case accessToken = "access_token"
+//    case accessToken = "access_token"
     case latitude
     case longitude
 

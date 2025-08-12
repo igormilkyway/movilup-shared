@@ -2,11 +2,11 @@
 
 import struct Foundation.UUID
 
-public struct ApproveOrderRequest: MURequest, TokenAuthenticated {
+public struct ApproveOrderRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = OrderDTO
 
-  public static let url = "approve_order"
-  public static let roles: Set<UserRole> = [.customer, .demoCustomer]
+  public static var url: String { "approve_order" }
+  public static var roles: Set<UserRole> { [.customer, .demoCustomer] }
 
   public init() {}
 }

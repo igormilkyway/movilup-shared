@@ -6,77 +6,65 @@ import Foundation
 import FoundationNetworking
 #endif
 
-public protocol URLable {
-  static var url: String { get }
-}
-
 public protocol PostRequest: ServerRequest { }
 public protocol GetRequest: ServerRequest { }
 
 public extension PostRequest {
   var headers: [String: String] { ["Content-Type": "application/json" ] }
 
-  var serialized: Data {
-    get throws {
-      try JSONEncoder().encode(self)
-    }
-  }
+  static var method: String? { "POST" }
+  var query: String? { nil }
 
-  func urlRequest() throws -> URLRequest {
-    let urlComponents = urlComponents(url: Self.baseURL)
-
-    return try URLRequest(url: urlComponents.url!).with {
-      $0.httpMethod = "POST"
-      //      let version = "1.0.1"
-      //      $0.setValue("MU/\(version) (iOS)", forHTTPHeaderField: "User-Agent")
-
-      for (headerName, headerValue) in headers {
-        $0.setValue(headerValue, forHTTPHeaderField: headerName)
-      }
-
-      $0.httpBody = try serialized
-    }
-  }
+  var _body: Data { get throws { try JSONEncoder().encode(self) } }
+  var body: Data? { get throws { try _body } }
 }
 
-public extension PostRequest where Self: Authenticated {
+public extension PostRequest where Self: HeaderAuthenticatedRequest {
   var headers: [String: String] {
     get throws { ["Content-Type": "application/json"].merging(try Self.authenticationHeaders) { (h, _) in h } }
   }
 }
 
-public extension GetRequest {
-  var serialized: Data {
-    get throws {
-      let string = try QueryEncoder().with {
-        $0.userInfo[.capitalizeName] = true
-      }
-      .encode(self)
-
-      return Data(string.utf8)
+public extension PostRequest where Self: TokenBodyAuthenticatedRequest {
+  var body: Data? { get throws {
+    if var dict = try JSONSerialization.jsonObject(with: try _body) as? [String: Any], Authenticator.isValid {
+      dict[Authenticator.name] = Authenticator.token
+      return try JSONSerialization.data(withJSONObject: dict)
+    } else {
+      throw SendError.other("Wrong body or no authenicator")
     }
-  }
-
-  func urlRequest() throws -> URLRequest {
-    var urlComponents = urlComponents(url: Self.baseURL)
-
-    guard let query = String(data: try serialized, encoding: .utf8) else {
-      fatalError()
-    }
-
-    urlComponents.query = query
-//    urlComponents.queryItems?.append(URLQueryItem(name: "Name", value: "Value"))
-//    print("GetRequest encoded: \(urlComponents.query!)")
-
-    return URLRequest(url: urlComponents.url!).with {
-      $0.httpMethod = "GET"
-
-      for (headerName, headerValue) in headers {
-        $0.setValue(headerValue, forHTTPHeaderField: headerName)
-      }
-    }
-  }
+  }}
 }
+
+public extension GetRequest {
+  static var method: String? { "GET" }
+
+  var _query: String { get throws {
+    try QueryEncoder().with {
+      $0.userInfo[.capitalizeName] = true
+    }
+    .encode(self)
+  }}
+
+  var query: String? {
+    get throws {
+      try _query
+    }
+  }
+
+  var body: Data? { nil }
+}
+
+public extension GetRequest where Self: TokenBodyAuthenticatedRequest {
+  var query: String? { get throws {
+    if Authenticator.isValid {
+      try _query.appending("&\(Authenticator.name)=\(Authenticator.token)")
+    } else {
+      throw SendError.other("Query: no authenicator")
+    }
+  }}
+}
+
 
 extension CharacterSet {
   func asArray() -> [Unicode.Scalar] {

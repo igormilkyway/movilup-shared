@@ -1,10 +1,10 @@
 //  Created by Igor Sorokin
 
-public struct LogRequest: MURequest, TokenAuthenticated {
+public struct LogRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = LogResponse
 
-  public static let url = "log"
-  public static let roles: Set<UserRole> = .all
+  public static var url: String { "log" }
+  public static var roles: Set<UserRole> { .all }
 
   let message: String
 

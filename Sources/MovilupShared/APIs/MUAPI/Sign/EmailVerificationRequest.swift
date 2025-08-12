@@ -1,11 +1,11 @@
 //  Created by Igor Sorokin
 
-public struct EmailVerificationRequest: MURequest {
+public struct EmailVerificationRequest<API: APIProtocol>: MURequest {
   public typealias Success = MeResponse
   public typealias Failure = EmailVerificationRequestError
-
-  public static let url = "email-verification"
-  public static let roles: Set<UserRole> = .all
+  
+  public static var url: String { "email-verification" }
+  public static var roles: Set<UserRole> { .all }
 
   public let email: String
   public let code: String

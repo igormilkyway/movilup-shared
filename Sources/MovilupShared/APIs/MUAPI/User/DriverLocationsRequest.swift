@@ -2,11 +2,11 @@
 
 import struct Foundation.UUID
 
-public struct DriverLocationsRequest: MURequest, TokenAuthenticated {
+public struct DriverLocationsRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
   public typealias Success = [DriverLocation]
 
-  public static let url = "driver-locations"
-  public static let roles: Set<UserRole> = [.customer, .demoCustomer, .owner]
+  public static var url: String { "driver-locations" }
+  public static var roles: Set<UserRole> { [.customer, .demoCustomer, .owner] }
 
   public init() {}
 }

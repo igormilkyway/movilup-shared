@@ -2,7 +2,7 @@
 
 import struct Foundation.UUID
 
-public protocol DTOType: ServerResponse, Identifiable, RoleAuthenticated {
+public protocol DTOType: ServerResponse, Identifiable, RoleAuthenticatedRequest {
   static var url: String { get }
 
   var id: UUID { get }

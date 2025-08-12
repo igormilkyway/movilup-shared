@@ -1,8 +1,8 @@
 //  Created by Igor Sorokin
 
-public struct UpdateDeviceTokenRequest: MURequest, TokenAuthenticated {
-  public static let url = "update-device-token"
-  public static let roles: Set<UserRole> = .all
+public struct UpdateDeviceTokenRequest<API: APIProtocol, Authenticator: TokenAuthenticatorProtocol>: MURequest, TokenHeaderAuthenticatedRequest {
+  public static var url: String { "update-device-token" }
+  public static var roles: Set<UserRole> { .all }
 
   public let deviceToken: String
 

@@ -9,7 +9,7 @@ import Foundation
 /// $curl "https://api.mapbox.com/search/searchbox/v1/retrieve/{id}?session_token=[GENERATED-UUID]&access_token=pk.eyJ1IjoiaWdvcm1pbGt5d2F5IiwiYSI6ImNsemhzemxhczA4YWoybXF4b3E5bnA4bDcifQ.KC7iC8G9iC9IJuftReWbZA"
 /// $curl
 
-public struct SearchBoxRetrieveRequest: SearchBoxRequest {
+public struct SearchBoxRetrieveRequest<Authenticator: TokenAuthenticatorProtocol>: SearchBoxRequest {
   public init(id: String, language: String?, eta: ETACalculation?) {
     self.id = id
     self.language = language
@@ -18,7 +18,7 @@ public struct SearchBoxRetrieveRequest: SearchBoxRequest {
   
   public typealias Response = SearchBoxRetrieveResponse
 
-  public static let url = "retrieve"
+  public static var url: String { "retrieve" }
 
   public var path: String {
     "/\(id)"
@@ -26,11 +26,11 @@ public struct SearchBoxRetrieveRequest: SearchBoxRequest {
   
   var id = ""
 
-  @AssertNotEmpry public var accessToken: String = Self.accessToken
+//  @AssertNotEmpry public var accessToken: String = Self.accessToken
 
   /// A customer-provided session token value, which groups a series of requests together for billing purposes.
   /// UUIDv4 is recommended.
-  let sessionToken = SearchBoxSuggestRequest.sessionToken
+  let sessionToken = sharedSessionToken
 
   /// The ISO language code to be returned. If not provided, the default is English.
   let language: String?
@@ -41,7 +41,7 @@ public struct SearchBoxRetrieveRequest: SearchBoxRequest {
   let eta: ETACalculation? // isETACalculation is enabled
 
   enum CodingKeys: String, CodingKey {
-    case accessToken = "access_token"
+//    case accessToken = "access_token"
     case sessionToken = "session_token"
     
     case language
@@ -51,7 +51,7 @@ public struct SearchBoxRetrieveRequest: SearchBoxRequest {
 
 public extension SearchBoxRetrieveRequest {
   func send(verbose: Bool = false) async throws -> Response {
-    let (statusCode, responseData) = try await urlRequest().send(verbose: verbose)
+    let (statusCode, responseData) = try await urlRequest.send(verbose: verbose)
 
     guard statusCode == 200 else {
       throw SendError.badStatusCode(statusCode)
@@ -63,7 +63,7 @@ public extension SearchBoxRetrieveRequest {
       print(response)
     }
     
-    SearchBoxSuggestRequest.sessionToken = UUID()
+    sharedSessionToken = UUID()
 
     return response
   }
