@@ -25,6 +25,7 @@ let package = Package(
 //    .package(url: "https://github.com/apple/swift-openapi-runtime", from: "1.8.2"),
 //    .package(url: "https://github.com/swift-server/swift-openapi-vapor", from: "1.0.1"),
 //    .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.9.0"),
+    .package(url: "https://github.com/apple/swift-numerics", from: "1.0.3"),
   ],
   targets: [
     // Ts are the basic building blocks of a P, defining a module or a test suite.
@@ -36,6 +37,7 @@ let package = Package(
 //        .product(name: "MapboxDirections", package: "mapbox-directions-swift"),
 //        .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
 //        .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
+        .product(name: "Numerics", package: "swift-numerics"),
       ]),
     .testTarget(
       name: "MovilupSharedTests",

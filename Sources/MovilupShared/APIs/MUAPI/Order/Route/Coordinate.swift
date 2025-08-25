@@ -1,6 +1,14 @@
 //
 
-public struct Coordinate: Codable, Equatable, Sendable {
+import Numerics
+
+extension Coordinate: Equatable {
+  public static func == (lhs: Self, rhs: Self) -> Bool {
+    lhs.latitude.isApproximatelyEqual(to: rhs.latitude) && lhs.longitude.isApproximatelyEqual(to: rhs.longitude)
+  }
+}
+
+public struct Coordinate: Codable, Sendable {
   @AsUnkeyed(order: 1)
   public var latitude: Double = 0
 

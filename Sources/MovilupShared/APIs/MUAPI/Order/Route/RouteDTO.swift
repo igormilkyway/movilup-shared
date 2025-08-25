@@ -2,6 +2,12 @@
 
 import struct Foundation.UUID
 
+//public protocol RouteProtocol {
+//  var from: LocationDTO { get }
+//  var to: LocationDTO { get }
+//  var fromTo: Distance { get }
+//}
+
 public struct RouteDTO: DTOType {
   public static let url = "route"
 
@@ -21,3 +27,9 @@ public struct RouteDTO: DTOType {
     fromTo.cost + from.cost + to.cost
   }
 }
+
+//public struct NewRoute: RouteProtocol {
+//  public var from: LocationDTO?
+//  public var to: LocationDTO?
+//  public var fromTo: Distance?
+//}

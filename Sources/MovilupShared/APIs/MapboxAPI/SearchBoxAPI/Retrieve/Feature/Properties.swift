@@ -23,6 +23,10 @@ public struct Properties: Codable, Sendable {
   /// The address of the result containing the address number and street.
   let address: String?
 
+  public var addressOrName: String {
+    address ?? name
+  }
+
   /// The full address of the result, which concatenates `address` and `place_formatted`.
   let fullAddress: String?
 
