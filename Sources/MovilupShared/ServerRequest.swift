@@ -7,7 +7,7 @@ import FoundationNetworking
 #endif
 
 public protocol ServerRequest<API>: Encodable, Sendable {
-  associatedtype API: APIProtocol // = DefaultAPI
+  associatedtype API: APIProtocol
   associatedtype Response: ServerResponse
 
   static var url: String { get }
@@ -16,7 +16,7 @@ public protocol ServerRequest<API>: Encodable, Sendable {
   var path: String { get }
   var query: String? { get throws }
   var body: Data? { get throws }
-  var headers: [String: String] { get }
+  var headers: [String: String] { get throws }
 
   func send(verbose: Bool) async throws -> Response
 }
@@ -27,15 +27,19 @@ public extension ServerRequest {
 
   var urlRequest: URLRequest {
     get throws {
-      guard let url = (try URLComponents(url: API.baseURL, resolvingAgainstBaseURL: false)!.with {
-        $0.path.append(Self.url)
-        $0.path.append(path)
-        $0.query = try query
+      let baseURL = API.baseURL
+      
+      guard
+        let urlComponents = (try URLComponents(url: baseURL, resolvingAgainstBaseURL: false)?.with {
+          $0.path.append(Self.url)
+          $0.path.append(path)
+          $0.query = try query
 
-        //    urlComponents.queryItems?.append(URLQueryItem(name: "Name", value: "Value"))
-        //    print("GetRequest encoded: \(urlComponents.query!)")
-      })
-        .url else {
+          //    urlComponents.queryItems?.append(URLQueryItem(name: "Name", value: "Value"))
+          //    print("GetRequest encoded: \(urlComponents.query!)")
+        }),
+        let url = urlComponents.url
+      else {
         throw SendError.other("Wrong URL")
       }
 
@@ -44,7 +48,8 @@ public extension ServerRequest {
         //      let version = "1.0.1"
         //      $0.setValue("MU/\(version) (iOS)", forHTTPHeaderField: "User-Agent")
 
-        for (headerName, headerValue) in headers {
+        for (headerName, headerValue) in try headers {
+//          print("headerName: \(headerName), headerValue: \(headerValue)")
           $0.setValue(headerValue, forHTTPHeaderField: headerName)
         }
 
@@ -73,6 +78,7 @@ public extension ServerThrowingRequest {
   typealias Response = Result<Success, Failure>
 
   func send(verbose: Bool = false) async throws -> Self.Success {
+    let urlRequest = try urlRequest
     let (statusCode, responseData) = try await urlRequest.send(verbose: verbose)
 
     guard statusCode == 200 else {

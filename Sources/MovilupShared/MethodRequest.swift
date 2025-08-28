@@ -25,6 +25,12 @@ public extension PostRequest where Self: HeaderAuthenticatedRequest {
   }
 }
 
+//public protocol HeaderAuthenticatedPostRequest: PostRequest { }
+//public extension HeaderAuthenticatedPostRequest where Self: HeaderAuthenticatedRequest {
+//  var headers: [String: String] {
+//    get throws }{ ["Content-Type": "application/json", "Test": "test" ].merging(try Self.authenticationHeaders) { (h, _) in h } }
+//}
+
 public extension PostRequest where Self: TokenBodyAuthenticatedRequest {
   var body: Data? { get throws {
     if var dict = try JSONSerialization.jsonObject(with: try _body) as? [String: Any], Authenticator.isValid {

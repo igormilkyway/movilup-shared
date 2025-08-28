@@ -6,7 +6,7 @@ public protocol RoleAuthenticatedRequest {
   static var roles: Set<UserRole> { get }
 }
 
-public protocol AuthenticatedRequest<Authenticator>: ServerRequest {
+public protocol AuthenticatedRequest<Authenticator> {
   associatedtype Authenticator: AuthenticatorProtocol
 }
 

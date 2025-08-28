@@ -6,7 +6,7 @@ public struct OrdersRequest<API: APIProtocol, Authenticator: TokenAuthenticatorP
   public typealias Success = OrdersResponse
 
   public static var url: String { "orders" }
-  public static var roles: Set<UserRole> { [.driver] }
+  public static var roles: Set<UserRole> { [.customer, .demoCustomer, .estimator, .driver, .owner] }
 
   public let state: OrderState?
 

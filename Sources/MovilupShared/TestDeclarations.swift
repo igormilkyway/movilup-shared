@@ -6,9 +6,9 @@ public protocol APIProtocol {
   static var baseURL: URL { get }
 }
 
-public struct DefaultAPI: APIProtocol {
-  public static var baseURL: URL { .init(string: "")! }
-}
+//public struct DefaultAPI: APIProtocol {
+//  public static var baseURL: URL { .init(string: "")! }
+//}
 
 //public protocol ProtocolInAnotherModule {
 //  associatedtype API: APIProtocol
