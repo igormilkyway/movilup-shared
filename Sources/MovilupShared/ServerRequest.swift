@@ -7,7 +7,7 @@ import FoundationNetworking
 #endif
 
 public protocol ServerRequest<API>: Encodable, Sendable {
-  associatedtype API: APIProtocol
+  associatedtype API: APIProtocol = DefaultAPI
   associatedtype Response: ServerResponse
 
   static var url: String { get }
