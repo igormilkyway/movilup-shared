@@ -61,6 +61,20 @@ public extension Coordinate {
 //    try container.encode(latitude)
 //  }
 
+public extension Coordinate {
+  static var ta: Coordinate {
+    .init(latitude: 32.08, longitude: 34.78)
+  }
+
+  static var tr: Coordinate {
+    .init(latitude: 36.780806, longitude: 31.403028)
+  }
+
+  static var mock: Coordinate {
+    .ta
+  }
+}
+
 @propertyWrapper
 public struct AsUnkeyed<Value>: Codable, Sendable where Value: Codable, Value: Equatable, Value: Sendable {
   private var value: Value

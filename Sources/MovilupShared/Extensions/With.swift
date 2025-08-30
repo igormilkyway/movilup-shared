@@ -88,9 +88,3 @@ public extension UUID {
     .init()
   }
 }
-
-public extension Coordinate {
-  static var mock: Coordinate {
-    .init(latitude: 0, longitude: 0)
-  }
-}

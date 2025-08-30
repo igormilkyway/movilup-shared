@@ -16,3 +16,9 @@ public struct CargoPhotoDTO: DTOType {
     self.imageData = imageData
   }
 }
+
+extension CargoPhotoDTO: Equatable {
+  public static func == (lhs: CargoPhotoDTO, rhs: CargoPhotoDTO) -> Bool {
+    lhs.id == rhs.id && lhs.itemIdentifier == rhs.itemIdentifier && lhs.imageData == rhs.imageData
+  }
+}
