@@ -37,7 +37,7 @@ extension LocationDTO.Floor: RawRepresentable {
       self = .higher
     } else if let rawNumber = Int(rawValue) {
       switch rawNumber {
-        case 1...30:
+        case 0...30:
           self = .number(rawNumber)
         default:
           return nil
@@ -50,7 +50,7 @@ extension LocationDTO.Floor: RawRepresentable {
 
 extension LocationDTO.Floor: CaseIterable {
   public static var allCases: [LocationDTO.Floor] {
-    let numbers = Array(1...30)
+    let numbers = Array(0...30)
       .map {
         Self.number($0)
       }
