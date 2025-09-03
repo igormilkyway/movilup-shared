@@ -2,7 +2,11 @@
 
 import protocol Foundation.LocalizedError
 
-public protocol ServerFailure: LocalizedError, ServerResponse {
+public protocol MUError: Error {
+  var localizedDescription: String { get }
+}
+
+public protocol ServerFailure: MUError, ServerResponse {
   //  static func processedByServer(localizedDescription: String) -> Self
   static var processedByServer: Self { get }
   static var resendingRequested: Self { get }
