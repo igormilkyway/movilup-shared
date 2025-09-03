@@ -80,6 +80,12 @@ public struct BoundingBox: Codable, Sendable {
     self.maxLongitude = maxLongitude
     self.maxLatitude = maxLatitude
   }
+
+  public func contains(_ coordinate: Coordinate) -> Bool {
+    (coordinate.latitude >= minLatitude) && (coordinate.latitude <= maxLatitude)
+    &&
+    (coordinate.longitude >= minLongitude) && (coordinate.longitude <= maxLongitude)
+  }
 }
 
 public extension BoundingBox {
